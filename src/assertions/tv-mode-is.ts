@@ -1,8 +1,11 @@
 import { entities } from "../entities.ts";
-import { Assertion } from "../lib/assertion.ts";
+import { Assertion } from "hass-lego";
 
 export const tvModeIs = (state: string) =>
-  new Assertion(`TV Mode is ${state}`, (client) => {
-    const switchState = client.getState(entities.global.switch.tvMode);
-    return state === switchState;
+  new Assertion({
+    name: `TV Mode is ${state}`,
+    predicate: (client) => {
+      const switchState = client.getState(entities.global.switch.tvMode);
+      return state === switchState;
+    },
   });

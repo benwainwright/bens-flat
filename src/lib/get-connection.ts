@@ -1,10 +1,9 @@
 import hass from "homeassistant-ws";
+import { LegoClient, EventBus } from "hass-lego";
 const hassWs = hass as unknown as typeof hass.default;
 
 import { getConfig } from "./get-config.ts";
-import { Client } from "./client.ts";
-import { SimpleLogger } from "./logger.ts";
-export const getConnection = async () => {
+export const getConnection = async (bus: EventBus) => {
   try {
     const config = getConfig();
 
@@ -15,8 +14,7 @@ export const getConnection = async () => {
       port: config.port,
       path: config.websocketPath,
     });
-
-    const client = new Client(api, new SimpleLogger());
+    const client = new LegoClient(api, bus);
     await client.init();
     return client;
   } catch (error) {

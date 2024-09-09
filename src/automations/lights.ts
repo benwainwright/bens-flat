@@ -15,27 +15,26 @@ import { hallwayMotionSensorIs } from "../assertions/hallway-motion-sensor-is.ts
 import { livingRoomMotionSensorIs } from "../assertions/living-room-motion-sensor-is.ts";
 import { sleepModeIs } from "../assertions/sleep-mode-is.ts";
 import { tvModeIs } from "../assertions/tv-mode-is.ts";
-import { Automation } from "../lib/automation.ts";
+import { Automation } from "hass-lego";
 import { motionDetectedInBathroom } from "../triggers/motion-detected-in-bathroom.ts";
 import { motionDetectedInBedroom } from "../triggers/motion-detected-in-bedroom.ts";
 import { motionDetectedInHallway } from "../triggers/motion-detected-in-hallway.ts";
 import { motionDetectedInLivingRoom } from "../triggers/motion-detected-in-living-room.ts";
 
-export const livingRoomMotionSensor = new Automation(
-  "Living room motion sensor",
-  {
-    trigger: motionDetectedInLivingRoom,
-    actions: [
-      tvModeIs("off"),
-      livingRoomMotionSensorIs("on"),
-      turnLivingRoomLightsOn,
-      waitMinutes(30),
-      turnLivingRoomLightsOff,
-    ],
-  },
-);
+export const livingRoomMotionSensor = new Automation({
+  name: "Living room motion sensor",
+  trigger: motionDetectedInLivingRoom,
+  actions: [
+    tvModeIs("off"),
+    livingRoomMotionSensorIs("on"),
+    turnLivingRoomLightsOn,
+    waitMinutes(30),
+    turnLivingRoomLightsOff,
+  ] as const,
+});
 
-export const bedroomMotionSensor = new Automation("Bedroom motion sensor", {
+export const bedroomMotionSensor = new Automation({
+  name: "Bedroom motion sensor",
   trigger: motionDetectedInBedroom,
   actions: [
     sleepModeIs("off"),
@@ -46,7 +45,8 @@ export const bedroomMotionSensor = new Automation("Bedroom motion sensor", {
   ],
 });
 
-export const bathroomMotionSensor = new Automation("Bathroom motion sensor", {
+export const bathroomMotionSensor = new Automation({
+  name: "Bathroom motion sensor",
   trigger: motionDetectedInBathroom,
   actions: [
     bathroomMotionSensorIs("on"),
@@ -56,7 +56,8 @@ export const bathroomMotionSensor = new Automation("Bathroom motion sensor", {
   ],
 });
 
-export const hallwayMotionSensor = new Automation("Hallway motion sensor", {
+export const hallwayMotionSensor = new Automation({
+  name: "Hallway motion sensor",
   trigger: motionDetectedInHallway,
   actions: [
     hallwayMotionSensorIs("on"),
