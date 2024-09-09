@@ -5,12 +5,15 @@ export class SimpleLogger implements Logger {
     console.log(message);
   }
   trace(message: string) {
-    //console.log(message);
+    console.log(message);
   }
   info(message: string) {
     console.log(message);
   }
   success(message: string) {
+    console.log(message);
+  }
+  fail(message: string) {
     console.log(message);
   }
   debug(message: string) {

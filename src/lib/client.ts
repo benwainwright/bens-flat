@@ -8,7 +8,7 @@ export class Client {
 
   public constructor(
     private client: HassApi,
-    private logger: Logger,
+    private logger: Logger
   ) {}
 
   public async init() {
@@ -38,7 +38,7 @@ export class Client {
     extraArgs?: A,
     options?: {
       returnResponse?: boolean;
-    },
+    }
   ): Promise<T> {
     return await this.client.callService(domain, service, extraArgs, options);
   }
@@ -46,15 +46,20 @@ export class Client {
   public addAutomationTrigger(id: string, automation: Automation) {
     this.onStateChanged(id, async (event) => {
       this.logger.info(
-        `${id} changed, triggering automation ${automation.name}`,
+        `${id} changed, triggering automation ${automation.name}`
       );
       await automation.execute(this, this.logger);
     });
   }
 
+  public registerAutomation(automation: Automation) {
+    automation.attachTrigger(this, this.logger);
+    this.logger.info(`Registered ${automation.name}`);
+  }
+
   public onStateChanged(
     id: string,
-    callback: (event: StateChangedEvent) => void,
+    callback: (event: StateChangedEvent) => void
   ) {
     if (!this.states) {
       throw new Error("Initial states not loaded");

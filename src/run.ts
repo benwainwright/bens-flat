@@ -1,10 +1,19 @@
-import { configureLights } from "./automations/lights.ts";
+import {
+  bathroomMotionSensor,
+  bedroomMotionSensor,
+  hallwayMotionSensor,
+  livingRoomMotionSensor,
+} from "./automations/lights.ts";
+
 import { getConnection } from "./lib/get-connection.ts";
 
-const connection = await getConnection();
+export const client = await getConnection();
 
-if (!connection) {
+if (!client) {
   throw new Error("Failed to connect to Home Assistant!");
 }
 
-configureLights(connection);
+client.registerAutomation(livingRoomMotionSensor);
+client.registerAutomation(bedroomMotionSensor);
+client.registerAutomation(bathroomMotionSensor);
+client.registerAutomation(hallwayMotionSensor);

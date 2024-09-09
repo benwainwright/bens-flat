@@ -38,8 +38,36 @@ export const turnBedroomLightsOn = new Action(
 );
 
 export const turnBedroomLightsOff = new Action(
-  "Turn bedroom lig0hts off",
+  "Turn bedroom lights off",
   async (client) => {
     await switchLight(client, "off", { area_id: "bedroom" });
+  },
+);
+
+export const turnHallwayLightsOn = new Action(
+  "Turn hallway lights on",
+  async (client) => {
+    await switchLight(client, "on", { area_id: "hallway" });
+  },
+);
+
+export const turnHallwayLightsOff = new Action(
+  "Turn hallway lights off",
+  async (client) => {
+    await switchLight(client, "off", { area_id: "hallway" });
+  },
+);
+
+export const turnBathroomLightsOn = new Action(
+  "Turn bathroom lights on",
+  async (client) => {
+    await switchLight(client, "on", { area_id: "bathroom" });
+  },
+);
+
+export const turnBathroomLightsOff = new Action(
+  "Turn bathroom lights off",
+  async (client) => {
+    await switchLight(client, "off", { area_id: "bathroom" });
   },
 );
