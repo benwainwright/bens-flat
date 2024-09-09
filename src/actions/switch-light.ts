@@ -15,58 +15,58 @@ const switchLight = async (
   await client.callService("light", action, target);
 };
 
-export const turnLivingRoomLightsOn = new Action(
-  "Turn living room lights on",
-  async (client) => {
+export const turnLivingRoomLightsOn = new Action({
+  name: "Turn living room lights on",
+  callback: async (client) => {
     await switchLight(client, "on", { area_id: "living_room" });
-  }
-);
+  },
+});
 
-export const turnLivingRoomLightsOff = new Action(
-  "Turn living room lights off",
-  async (client) => {
+export const turnLivingRoomLightsOff = new Action({
+  name: "Turn living room lights off",
+  callback: async (client) => {
     await switchLight(client, "off", { area_id: "living_room" });
-  }
-);
+  },
+});
 
-export const turnBedroomLightsOn = new Action(
-  "Turn bedroomlights on",
-  async (client) => {
+export const turnBedroomLightsOn = new Action({
+  name: "Turn bedroomlights on",
+  callback: async (client) => {
     await switchLight(client, "on", { area_id: "bedroom" });
-  }
-);
+  },
+});
 
-export const turnBedroomLightsOff = new Action(
-  "Turn bedroom lights off",
-  async (client) => {
+export const turnBedroomLightsOff = new Action({
+  name: "Turn bedroom lights off",
+  callback: async (client) => {
     await switchLight(client, "off", { area_id: "bedroom" });
-  }
-);
+  },
+});
 
-export const turnHallwayLightsOn = new Action(
-  "Turn hallway lights on",
-  async (client) => {
+export const turnHallwayLightsOn = new Action({
+  name: "Turn hallway lights on",
+  callback: async (client) => {
     await switchLight(client, "on", { area_id: "hallway" });
-  }
-);
+  },
+});
 
-export const turnHallwayLightsOff = new Action(
-  "Turn hallway lights off",
-  async (client) => {
+export const turnHallwayLightsOff = new Action({
+  name: "Turn hallway lights off",
+  callback: async (client) => {
     await switchLight(client, "off", { area_id: "hallway" });
-  }
-);
+  },
+});
 
-export const turnBathroomLightsOn = new Action(
-  "Turn bathroom lights on",
-  async (client) => {
+export const turnBathroomLightsOn = new Action({
+  name: "Turn bathroom lights on",
+  callback: async (client) => {
     await switchLight(client, "on", { area_id: "bathroom" });
-  }
-);
+  },
+});
 
-export const turnBathroomLightsOff = new Action(
-  "Turn bathroom lights off",
-  async (client) => {
+export const turnBathroomLightsOff = new Action({
+  name: "Turn bathroom lights off",
+  callback: async (client) => {
     await switchLight(client, "off", { area_id: "bathroom" });
-  }
-);
+  },
+});
