@@ -1,0 +1,26 @@
+{
+  "name": "bens-flat",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "vite-node src/run.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^22.5.4",
+    "dotenv": "^16.4.5",
+    "home-assistant-js-websocket": "^9.4.0",
+    "homeassistant-ws": "^0.2.3",
+    "jsdom": "^25.0.0",
+    "prettier": "^3.3.3",
+    "swc": "^1.0.11",
+    "typescript": "^5.5.4",
+    "vite-node": "^2.0.5",
+    "vitest": "^2.0.5"
+  }
+}
