@@ -54,7 +54,7 @@ export class Client {
 
   public registerAutomation(automation: Automation) {
     automation.attachTrigger(this, this.logger);
-    this.logger.info(`Registered ${automation.name}`);
+    this.logger.info(`Registered automation: ${automation.name}`);
   }
 
   public onStateChanged(
@@ -75,7 +75,6 @@ export class Client {
       }
       if (event.data.entity_id === id) {
         try {
-          console.log(`State of ${id} changed`);
           callback(event);
         } catch (error) {
           if (error instanceof Error) {

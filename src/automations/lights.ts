@@ -16,7 +16,6 @@ import { livingRoomMotionSensorIs } from "../assertions/living-room-motion-senso
 import { sleepModeIs } from "../assertions/sleep-mode-is.ts";
 import { tvModeIs } from "../assertions/tv-mode-is.ts";
 import { Automation } from "../lib/automation.ts";
-import { Client } from "../lib/client.ts";
 import { motionDetectedInBathroom } from "../triggers/motion-detected-in-bathroom.ts";
 import { motionDetectedInBedroom } from "../triggers/motion-detected-in-bedroom.ts";
 import { motionDetectedInHallway } from "../triggers/motion-detected-in-hallway.ts";

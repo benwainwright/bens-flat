@@ -1,5 +1,3 @@
-import { createConnection } from "home-assistant-js-websocket";
-
 import hass from "homeassistant-ws";
 const hassWs = hass as unknown as typeof hass.default;
 
