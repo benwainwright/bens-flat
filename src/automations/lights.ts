@@ -32,7 +32,7 @@ export const livingRoomMotionSensor = new Automation(
       waitMinutes(30),
       turnLivingRoomLightsOff,
     ],
-  }
+  },
 );
 
 export const bedroomMotionSensor = new Automation("Bedroom motion sensor", {

@@ -20,8 +20,8 @@ export class Automation {
       const { trigger } = this.config;
       client.onStateChanged(trigger.id, async (event) => {
         if (!trigger.predicate || trigger.predicate(event)) {
-          logger.info(`'${this.name} triggered by '${trigger.name}'`);
-          await this.execute(client, logger);
+          logger.info(`[${this.name}] Triggered by '${trigger.name}'`);
+          await this.execute(client, logger, this);
         }
       });
     } else {
@@ -29,7 +29,11 @@ export class Automation {
     }
   }
 
-  public async execute(client: Client, logger: Logger) {
+  public async execute(
+    client: Client,
+    logger: Logger,
+    parent?: AutomationSequenceEvents
+  ) {
     const sequence = Array.isArray(this.config)
       ? this.config
       : this.config.actions;
@@ -40,10 +44,10 @@ export class Automation {
         return false;
       }
       if (nextItem instanceof Action || nextItem instanceof Automation) {
-        await nextItem.execute(client, logger);
+        await nextItem.execute(client, logger, this);
         return true;
       }
-      return await nextItem.runPredicate(client, logger);
+      return await nextItem.runPredicate(client, logger, this);
     }, Promise.resolve(true));
     logger.debug(`Finished execution of '${this.name}'`);
   }
