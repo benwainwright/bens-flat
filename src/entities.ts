@@ -13,6 +13,7 @@ export const entities = {
   },
   global: {
     switch: {
+      blindsDefaultPositionOpen: "switch.living_room_blinds_default_to_open",
       tvMode: "switch.tv_mode",
       sleepMode: "switch.sleep_mode",
       livingRoomMotionSensor: "switch.living_room_motion_sensor",

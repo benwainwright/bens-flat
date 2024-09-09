@@ -15,8 +15,8 @@ dependencies:
     specifier: ^16.4.5
     version: 16.4.5
   hass-lego:
-    specifier: ^1.3.1
-    version: 1.3.1(jsdom@25.0.0)
+    specifier: ^1.4.0
+    version: 1.4.0(jsdom@25.0.0)
   home-assistant-js-websocket:
     specifier: ^9.4.0
     version: 9.4.0
@@ -1567,8 +1567,8 @@ packages:
       function-bind: 1.1.2
     dev: false
 
-  /hass-lego@1.3.1(jsdom@25.0.0):
-    resolution: {integrity: sha512-VBeJOgrAMdEn8CbCxqpvzlZWx5lOSXxIImJ0WdgCI6Z1AmDlE+c8oPXEpYqd+pmIU/yvpP0jNXPFG+DR+KcF5g==}
+  /hass-lego@1.4.0(jsdom@25.0.0):
+    resolution: {integrity: sha512-LuktGzZAycNCcFKcuCU8qSFKpi3kky2FipQ2cOWzhvJ+lHZC5uJ/Rc4rTP/kxXMAUtrbOe4LQUeIkofC7vf3jg==}
     dependencies:
       '@microsoft/api-extractor': 7.47.7(@types/node@22.5.4)
       '@swc/plugin-transform-imports': 3.0.2
