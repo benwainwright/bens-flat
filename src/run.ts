@@ -21,4 +21,4 @@ client.registerAutomation(bedroomMotionSensor);
 client.registerAutomation(bathroomMotionSensor);
 client.registerAutomation(hallwayMotionSensor);
 
-renderSimpleLog(events);
+renderSimpleLog(events, false);

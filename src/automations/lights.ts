@@ -15,7 +15,7 @@ import { hallwayMotionSensorIs } from "../assertions/hallway-motion-sensor-is.ts
 import { livingRoomMotionSensorIs } from "../assertions/living-room-motion-sensor-is.ts";
 import { sleepModeIs } from "../assertions/sleep-mode-is.ts";
 import { tvModeIs } from "../assertions/tv-mode-is.ts";
-import { Automation } from "hass-lego";
+import { Automation, ExecutionMode } from "hass-lego";
 import { motionDetectedInBathroom } from "../triggers/motion-detected-in-bathroom.ts";
 import { motionDetectedInBedroom } from "../triggers/motion-detected-in-bedroom.ts";
 import { motionDetectedInHallway } from "../triggers/motion-detected-in-hallway.ts";
@@ -24,6 +24,7 @@ import { motionDetectedInLivingRoom } from "../triggers/motion-detected-in-livin
 export const livingRoomMotionSensor = new Automation({
   name: "Living room motion sensor",
   trigger: motionDetectedInLivingRoom,
+  mode: ExecutionMode.Restart,
   actions: [
     tvModeIs("off"),
     livingRoomMotionSensorIs("on"),
@@ -36,6 +37,7 @@ export const livingRoomMotionSensor = new Automation({
 export const bedroomMotionSensor = new Automation({
   name: "Bedroom motion sensor",
   trigger: motionDetectedInBedroom,
+  mode: ExecutionMode.Restart,
   actions: [
     sleepModeIs("off"),
     bedroomMotionSensorIs("on"),
@@ -48,6 +50,7 @@ export const bedroomMotionSensor = new Automation({
 export const bathroomMotionSensor = new Automation({
   name: "Bathroom motion sensor",
   trigger: motionDetectedInBathroom,
+  mode: ExecutionMode.Restart,
   actions: [
     bathroomMotionSensorIs("on"),
     turnBathroomLightsOn,
@@ -59,6 +62,7 @@ export const bathroomMotionSensor = new Automation({
 export const hallwayMotionSensor = new Automation({
   name: "Hallway motion sensor",
   trigger: motionDetectedInHallway,
+  mode: ExecutionMode.Restart,
   actions: [
     hallwayMotionSensorIs("on"),
     turnHallwayLightsOn,
