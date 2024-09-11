@@ -4,7 +4,8 @@ export const turnSwitchOn = (...switchId: string[]) => {
   return new Action({
     name: `Turn switch on`,
     callback: async (client) => {
-      await client.callService("light", "turn_on", { entity_id: switchId });
+      console.log(`Calling turn on for ${switchId}`);
+      await client.callService("switch", "turn_on", { entity_id: switchId });
     },
   });
 };

@@ -6,6 +6,8 @@ export const entities = {
     blinds: "cover.living_room_blinds",
     speaker: "media_player.living_room_speaker",
     adaptiveLighting: "switch.adaptive_lighting_living_room",
+    xbox: "binary_sensor.sordidhydra4706_in_game",
+    appleTv: "media_player.apple_tv",
   },
   bedroom: {
     speaker: "media_player.bedroom_speaker",
