@@ -6,7 +6,6 @@ import { getConfig } from "./get-config.ts";
 export const getConnection = async (bus: EventBus) => {
   try {
     const config = getConfig();
-
     const api = await hassWs({
       token: config.token,
       protocol: "ws",
@@ -15,7 +14,7 @@ export const getConnection = async (bus: EventBus) => {
       path: config.websocketPath,
     });
     const client = new LegoClient(api, bus);
-    await client.init();
+    await client.loadStates();
     return client;
   } catch (error) {
     console.log(error);

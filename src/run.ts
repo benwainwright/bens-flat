@@ -7,6 +7,7 @@ import {
 } from "./automations/lights.ts";
 
 import { getConnection } from "./lib/get-connection.ts";
+import { tvModeOff, tvModeOn } from "./automations/tv-mode.ts";
 
 const events = new EventBus();
 
@@ -20,5 +21,7 @@ client.registerAutomation(livingRoomMotionSensor);
 client.registerAutomation(bedroomMotionSensor);
 client.registerAutomation(bathroomMotionSensor);
 client.registerAutomation(hallwayMotionSensor);
+client.registerAutomation(tvModeOn);
+client.registerAutomation(tvModeOff);
 
 renderSimpleLog(events, false);

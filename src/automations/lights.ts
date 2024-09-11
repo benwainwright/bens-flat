@@ -7,14 +7,14 @@ import {
   turnHallwayLightsOn,
   turnLivingRoomLightsOff,
   turnLivingRoomLightsOn,
-} from "../actions/switch-light.ts";
-import { waitMinutes } from "../actions/wait-minutes.ts";
+} from "../actions/hass/switch-light.ts";
+import { waitMinutes } from "../actions/utils/wait-minutes.ts";
 import { bathroomMotionSensorIs } from "../assertions/bathroom-motion-sensor-is.ts";
 import { bedroomMotionSensorIs } from "../assertions/bedroom-motion-sensor-is.ts";
 import { hallwayMotionSensorIs } from "../assertions/hallway-motion-sensor-is.ts";
 import { livingRoomMotionSensorIs } from "../assertions/living-room-motion-sensor-is.ts";
 import { sleepModeIs } from "../assertions/sleep-mode-is.ts";
-import { tvModeIs } from "../assertions/tv-mode-is.ts";
+import { ifTvModeIs } from "../assertions/tv-mode-is.ts";
 import { Automation, ExecutionMode } from "hass-lego";
 import { motionDetectedInBathroom } from "../triggers/motion-detected-in-bathroom.ts";
 import { motionDetectedInBedroom } from "../triggers/motion-detected-in-bedroom.ts";
@@ -26,7 +26,7 @@ export const livingRoomMotionSensor = new Automation({
   trigger: motionDetectedInLivingRoom,
   mode: ExecutionMode.Restart,
   actions: [
-    tvModeIs("off"),
+    ifTvModeIs("off"),
     livingRoomMotionSensorIs("on"),
     turnLivingRoomLightsOn,
     waitMinutes(30),

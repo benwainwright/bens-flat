@@ -1,7 +1,7 @@
 import { entities } from "../entities.ts";
 import { Assertion } from "hass-lego";
 
-export const tvModeIs = (state: string) =>
+export const ifTvModeIs = (state: string) =>
   new Assertion({
     name: `TV Mode is ${state}`,
     predicate: (client) => {

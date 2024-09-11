@@ -12,7 +12,11 @@ const switchLight = async (
 ) => {
   const action = onOrOff === "on" ? "turn_on" : "turn_off";
 
-  await client.callService("light", action, target);
+  const args = {
+    ...target,
+  };
+
+  await client.callService("light", action, args);
 };
 
 export const turnLivingRoomLightsOn = new Action({
