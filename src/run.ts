@@ -32,3 +32,11 @@ client.registerAutomation(triggerTvModeOn);
 client.registerAutomation(triggerTvModeOff);
 
 renderSimpleLog(events, false);
+
+const server = client.getWebsocketServer();
+
+const port = 3001;
+
+server.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});
