@@ -1,9 +1,9 @@
 import { Trigger } from "hass-lego";
 import { entities } from "../entities.ts";
 
-export const tvModeChangesStateTo = (state: "on" | "off") => {
+export const whenTvModeSwitchesTo = (state: "on" | "off") => {
   return new Trigger(
-    `TV Mode changes ${state}`,
+    `When TV Mode switches to ${state}`,
     entities.global.switch.tvMode,
     (event) => {
       const { new_state, old_state } = event.hassEvent.data;

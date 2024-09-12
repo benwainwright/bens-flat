@@ -17,7 +17,13 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "noImplicitOverride": true,
-    "moduleResolution": "node16"
+    "moduleResolution": "node16",
+    "paths": {
+      "@actions": ["./src/actions/index.ts"],
+      "@assertions": ["./src/assertions/index.ts"],
+      "@triggers": ["./src/triggers/index.ts"],
+      "@automations": ["./src/automations/index.ts"]
+    }
   },
   "include": ["./src/**/*.ts", "./src/**/*.tsx", "./vitest.config.ts"],
   "exclude": ["dist"]

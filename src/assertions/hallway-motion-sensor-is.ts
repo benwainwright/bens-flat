@@ -1,9 +1,9 @@
 import { entities } from "../entities.ts";
 import { Assertion } from "hass-lego";
 
-export const hallwayMotionSensorIs = (state: string) =>
+export const ifHallwayMotionSensorIs = (state: string) =>
   new Assertion({
-    name: `Hallway motion sensor switch is ${state}`,
+    name: `If Hallway motion sensor switch is ${state}`,
     predicate: (client) => {
       const switchState = client.getState(
         entities.global.switch.hallwayMotionSensor

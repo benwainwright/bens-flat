@@ -1,8 +1,8 @@
 import { entities } from "../entities.ts";
 import { Trigger } from "hass-lego";
 
-export const motionDetectedInBedroom = new Trigger(
-  "Motion detected in bedroom",
+export const whenMotionIsDetectedInBedroom = new Trigger(
+  "When motion is detected in the bedroom",
   entities.bedroom.motionSensor,
   (event) => {
     const { old_state, new_state } = event.hassEvent.data;

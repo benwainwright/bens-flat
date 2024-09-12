@@ -1,9 +1,9 @@
 import { entities } from "../entities.ts";
 import { Assertion } from "hass-lego";
 
-export const sleepModeIs = (state: string) =>
+export const ifSleepModeIs = (state: string) =>
   new Assertion({
-    name: `Sleep mode is ${state}`,
+    name: `If sleep mode is ${state}`,
     predicate: (client) => {
       const switchState = client.getState(entities.global.switch.sleepMode);
       return state === switchState;
