@@ -13,8 +13,6 @@ export const getConnection = async (bus: EventBus) => {
       port: config.port,
       path: config.websocketPath,
     });
-    const result = await api.getServices()
-    console.log(result)
     const client = new LegoClient(api, bus);
     await client.loadStates();
     return client;
