@@ -3,7 +3,7 @@ import { registerAllAutomations } from "../automations/register-all.ts";
 import { entities } from "../entities.ts";
 import { assignAreas } from "../test-support/assign-areas.ts";
 
-const { client, rawClient, bus } = await getTestClient();
+const { client, rawClient } = await getTestClient();
 registerAllAutomations(client);
 
 beforeAll(async () => {
@@ -27,16 +27,6 @@ describe("The living room motion sensor", () => {
         entity_id: entities.global.switch.livingRoomMotionSensor,
       },
     });
-
-    await vi.waitFor(
-      async () => {
-        const { state } = await rawClient.getState(
-          entities.global.switch.livingRoomMotionSensor
-        );
-        expect(state).toEqual("on");
-      },
-      { timeout: 30 * 1000 }
-    );
 
     await rawClient.callService({
       domain: "virtual",

@@ -1,0 +1,24 @@
+name: Main CI
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  test-e2e:
+    runs-on: ubuntu-latest
+    name: Run end to end tests
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup job
+        uses: ./.github/actions/install-dependencies
+        with:
+          node-version: 21.x
+      - run: pnpm run test:e2e
