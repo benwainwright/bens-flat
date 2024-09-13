@@ -1,18 +1,22 @@
-import { EventBus, renderSimpleLog } from "hass-lego";
+import { EventBus, renderSimpleLog, when } from "hass-lego";
+
+import { getConnection } from "@lib";
+
 import {
   bathroomMotionSensor,
   bedroomMotionSensor,
   hallwayMotionSensor,
   livingRoomMotionSensor,
-} from "./automations/lights.ts";
-
-import { getConnection } from "./lib/get-connection.ts";
-import {
   tvModeOff,
   tvModeOn,
   triggerTvModeOff,
   triggerTvModeOn,
-} from "./automations/tv-mode.ts";
+  openAndCloseBlinds,
+  whenILeaveHome,
+  homeMode,
+  homeModeSwitchChangesToOff,
+  welcomeHomeRoutine,
+} from "@automations";
 
 const events = new EventBus();
 
@@ -30,6 +34,12 @@ client.registerAutomation(tvModeOn);
 client.registerAutomation(tvModeOff);
 client.registerAutomation(triggerTvModeOn);
 client.registerAutomation(triggerTvModeOff);
+client.registerAutomation(openAndCloseBlinds);
+client.registerAutomation(whenILeaveHome);
+client.registerAutomation(homeMode);
+client.registerAutomation(homeModeSwitchChangesToOff);
+client.registerAutomation(whenILeaveHome);
+client.registerAutomation(welcomeHomeRoutine);
 
 renderSimpleLog(events, false);
 

@@ -1,13 +1,19 @@
 import { Action } from "hass-lego";
 
-export const pauseMediaPlayer = (playerId: string | string[]) => {
+export const mediaPlayerSetVolume = (
+  playerId: string | string[],
+  volume: number
+) => {
   return new Action({
-    name: "Pause media player",
+    name: "Play media player",
     callback: async (client) => {
       await client.callService({
         domain: "media_player",
-        service: "media_pause",
+        service: "volume_set",
         target: { entity_id: playerId },
+        data: {
+          volume_level: String(volume),
+        },
       });
     },
   });

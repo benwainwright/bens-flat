@@ -11,11 +11,11 @@ export const switchLight = (target: Which, onOrOff: "on" | "off") => {
     callback: async (client) => {
       const action = onOrOff === "on" ? "turn_on" : "turn_off";
 
-      const args = {
-        ...target,
-      };
-
-      await client.callService("light", action, args);
+      await client.callService({
+        domain: "light",
+        service: action,
+        target,
+      });
     },
   });
 };

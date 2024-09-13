@@ -1,3 +1,4 @@
+export { whenBlindsDefaultPositionChangesToOpen } from "./when-blinds-default-position-changes-to-open.ts";
 export { whenBlindsDefaultPositionChanges } from "./when-blinds-default-position-changes.ts";
 export { whenMotionIsDetectedInTheBathroom } from "./when-motion-is-detected-in-the-bathroom.ts";
 export { whenMotionIsDetectedInTheHallway } from "./when-motion-is-detected-in-the-hallway.ts";
@@ -7,3 +8,7 @@ export { whenIStartPlayingAGameOnMyXBox } from "./when-I-start-playing-a-game-on
 export { whenIStopPlayingAGameOnMyXbox } from "./when-I-stop-playing-a-game-on-my-xbox.ts";
 export { whenIStartWatchingSomethingOnTheAppleTv } from "./when-I-start-watching-something-on-the-apple-tv.ts";
 export { whenIStopWatchingSomethingOnTheAppleTv } from "./when-I-stop-watching-something-on-the-apple-tv.ts";
+export { whenIGetHome } from "./when-I-get-home.ts";
+export { whenIGoOut } from "./when-I-go-out.ts";
+export { whenHomeModeTurnsOn } from "./when-home-mode-turns-on.ts";
+export { whenHomeModeTurnsOff } from "./when-home-mode-turns-off.ts";

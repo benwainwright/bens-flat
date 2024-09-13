@@ -1,6 +1,7 @@
 export { closeLivingRoomBlinds } from "./close-living-room-blinds.ts";
 export { createSnapshotScene } from "./create-snapshot-scene.ts";
 export { turnOnScene } from "./hass/turn-on-scene.ts";
+export { openCover } from "./hass/open-cover.ts";
 export { openLivingRoomBlinds } from "./open-living-room-blinds.ts";
 export { pauseMusicInTheLivingRoom } from "./pause-music-in-the-living-room.ts";
 export { recordStateOfLivingRoom } from "./record-state-of-living-room.ts";
@@ -20,3 +21,10 @@ export { turnLivingRoomLightsOff } from "./turn-living-room-lights-off.ts";
 export { turnBedroomLightsOn } from "./turn-bedroom-lights-on.ts";
 export { turnBedroomLightsOff } from "./turn-bedroom-lights-off.ts";
 export { turnTvModeOn, turnTvModeOff } from "./turn-tv-mode.ts";
+export { turnHomeModeOff, turnHomeModeOn } from "./turn-home-mode.ts";
+export { zoneExitChecks } from "./zone-exit-checks.ts";
+export { pauseMusicInTheBedroom } from "./pause-music-in-the-bedroom.ts";
+export { turnOffTv } from "./turn-off-tv.ts";
+export { turnOffImac } from "./turn-off-imac.ts";
+export { playMyDiscoverWeekly } from "./play-my-discover-weekly.ts";
+export { mediaPlayerSetVolume } from "./hass/set-media-player-volume.ts";

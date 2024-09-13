@@ -26,6 +26,10 @@ export const whenIStartWatchingSomethingOnTheAppleTv = new Trigger(
       return isChangeFromOffToOn;
     }
 
+    if (typeof attributes.app_id !== "string") {
+      throw new Error("App ID was incorrect type");
+    }
+
     if (Object.values(appIds).includes(attributes.app_id)) {
       return isChangeFromOffToOn;
     }

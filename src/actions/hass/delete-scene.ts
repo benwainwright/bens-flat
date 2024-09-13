@@ -1,11 +1,13 @@
 import { Action } from "hass-lego";
 
-export const deleteScene = (sceneId: string) => {
+export const deleteScene = (sceneId: string | string[]) => {
   return new Action({
     name: "Delete scene",
     callback: async (client) => {
-      await client.callService("scene", "delete", {
-        entity_id: sceneId,
+      await client.callService({
+        domain: "media_player",
+        service: "media_pause",
+        target: { entity_id: sceneId },
       });
     },
   });

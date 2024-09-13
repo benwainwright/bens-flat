@@ -1,6 +1,4 @@
-import { Logger } from "../types/logger.ts";
-
-export class SimpleLogger implements Logger {
+export class SimpleLogger {
   warning(message: string) {
     console.log(message);
   }

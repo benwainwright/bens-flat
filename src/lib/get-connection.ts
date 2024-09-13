@@ -1,22 +1,12 @@
 import hass from "homeassistant-ws";
 import { LegoClient, EventBus } from "hass-lego";
+import { initialiseClient, getConfig } from "homeassistant-typescript";
 const hassWs = hass as unknown as typeof hass.default;
 
-import { getConfig } from "./get-config.ts";
-export const getConnection = async (bus: EventBus) => {
-  try {
-    const config = getConfig();
-    const api = await hassWs({
-      token: config.token,
-      protocol: "ws",
-      host: config.host,
-      port: config.port,
-      path: config.websocketPath,
-    });
-    const client = new LegoClient(api, bus);
-    await client.loadStates();
-    return client;
-  } catch (error) {
-    console.log(error);
-  }
+export const getConnection = async (bus: EventBus): Promise<LegoClient> => {
+  const config = getConfig();
+  const client = await initialiseClient(config);
+  const lego = new LegoClient(client, bus);
+  await lego.loadStates();
+  return lego;
 };

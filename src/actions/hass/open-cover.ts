@@ -1,12 +1,12 @@
 import { Action } from "hass-lego";
 
-export const closeCover = (coverId: string | string[]) => {
+export const openCover = (coverId: string | string[]) => {
   return new Action({
-    name: "Close cover",
+    name: "Open cover",
     callback: async (client) => {
       await client.callService({
         domain: "cover",
-        service: "close_cover",
+        service: "open_cover",
         target: { entity_id: coverId },
       });
     },
