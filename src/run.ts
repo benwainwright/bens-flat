@@ -17,6 +17,7 @@ import {
   homeModeSwitchChangesToOff,
   welcomeHomeRoutine,
 } from "@automations";
+import { registerAllAutomations } from "./automations/register-all.ts";
 
 const events = new EventBus();
 
@@ -26,20 +27,7 @@ if (!client) {
   throw new Error("Failed to connect to Home Assistant!");
 }
 
-client.registerAutomation(livingRoomMotionSensor);
-client.registerAutomation(bedroomMotionSensor);
-client.registerAutomation(bathroomMotionSensor);
-client.registerAutomation(hallwayMotionSensor);
-client.registerAutomation(tvModeOn);
-client.registerAutomation(tvModeOff);
-client.registerAutomation(triggerTvModeOn);
-client.registerAutomation(triggerTvModeOff);
-client.registerAutomation(openAndCloseBlinds);
-client.registerAutomation(whenILeaveHome);
-client.registerAutomation(homeMode);
-client.registerAutomation(homeModeSwitchChangesToOff);
-client.registerAutomation(whenILeaveHome);
-client.registerAutomation(welcomeHomeRoutine);
+registerAllAutomations(client);
 
 renderSimpleLog(events, false);
 

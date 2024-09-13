@@ -1,7 +1,6 @@
-version: "3"
 services:
   homeassistant:
-    container_name: homeassistant
+    container_name: homeassistant-bens-flat
     build: .
     volumes:
       - ./hass-config:/config

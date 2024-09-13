@@ -1,0 +1,107 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+virtual:
+  yaml_config: true
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+input_boolean:
+  test_switch:
+    name: Test switch
+    initial: true
+    icon: mdi:car
+
+light:
+  - platform: "virtual"
+    name: "!living room"
+    initial_value: "off"
+    persistent: false
+  - platform: "virtual"
+    name: "!bedroom"
+    initial_value: "off"
+    persistent: false
+  - platform: "virtual"
+    name: "!bathroom"
+    initial_value: "off"
+    persistent: false
+  - platform: "virtual"
+    name: "!hallway"
+    initial_value: "off"
+    persistent: false
+binary_sensor:
+  - platform: "virtual"
+    name: "!living room sensor sensor state motion"
+    initial_value: "off"
+    persistent: false
+  - platform: "virtual"
+    name: "!sordidhydra4706 in game"
+    initial_value: "off"
+    persistent: false
+  - platform: "virtual"
+    name: "!bedroom sensor sensor state motion"
+    initial_value: "off"
+    persistent: false
+  - platform: "virtual"
+    name: "!bathroom motion sensor occupancy"
+    initial_value: "off"
+    persistent: false
+  - platform: "virtual"
+    name: "!hallway motion sensor occupancy"
+    initial_value: "off"
+    persistent: false
+cover:
+  - platform: "virtual"
+    name: "!living room blinds"
+    initial_value: "closed"
+    persistent: false
+switch:
+  - platform: "virtual"
+    name: "!adaptive lighting living room"
+    initial_value: "off"
+    persistent: false
+  - platform: "virtual"
+    name: "!living room blinds default to open"
+    initial_value: "off"
+    persistent: false
+  - platform: "virtual"
+    name: "!visitor mode"
+    initial_value: "off"
+    persistent: false
+  - platform: "virtual"
+    name: "!home mode"
+    initial_value: "off"
+    persistent: false
+  - platform: "virtual"
+    name: "!tv mode"
+    initial_value: "off"
+    persistent: false
+  - platform: "virtual"
+    name: "!sleep mode"
+    initial_value: "off"
+    persistent: false
+  - platform: "virtual"
+    name: "!living room motion sensor"
+    initial_value: "off"
+    persistent: false
+  - platform: "virtual"
+    name: "!bedroom motion sensor"
+    initial_value: "off"
+    persistent: false
+  - platform: "virtual"
+    name: "!hallway motion sensor"
+    initial_value: "off"
+    persistent: false
+  - platform: "virtual"
+    name: "!bathroom motion sensor"
+    initial_value: "off"
+    persistent: false
+  - platform: "virtual"
+    name: "!good morning message played"
+    initial_value: "off"
+    persistent: false

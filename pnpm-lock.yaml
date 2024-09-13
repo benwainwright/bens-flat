@@ -5,12 +5,18 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@catalystic/json-to-yaml':
+    specifier: ^1.0.0
+    version: 1.0.0
   '@types/jsdom':
     specifier: ^21.1.7
     version: 21.1.7
   '@types/node':
     specifier: ^22.5.4
     version: 22.5.4
+  docker-compose:
+    specifier: ^0.24.8
+    version: 0.24.8
   dotenv:
     specifier: ^16.4.5
     version: 16.4.5
@@ -122,6 +128,10 @@ packages:
 
   /@bcoe/v8-coverage@0.2.3:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
+    dev: false
+
+  /@catalystic/json-to-yaml@1.0.0:
+    resolution: {integrity: sha512-SsaxDB/JojD+bXv/UA1z5sUCfL0t2oP9qasyzIPhYHCh1JuFkd82Ip8D/81bjeaCFDsy2GiWqaVPcJD4+rXrqw==}
     dev: false
 
   /@colors/colors@1.5.0:
@@ -1746,6 +1756,13 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       path-type: 4.0.0
+    dev: false
+
+  /docker-compose@0.24.8:
+    resolution: {integrity: sha512-plizRs/Vf15H+GCVxq2EUvyPK7ei9b/cVesHvjnX4xaXjM9spHe2Ytq0BitndFgvTJ3E3NljPNUEl7BAN43iZw==}
+    engines: {node: '>= 6.0.0'}
+    dependencies:
+      yaml: 2.5.1
     dev: false
 
   /dot-prop@5.3.0:
@@ -4779,6 +4796,12 @@ packages:
 
   /yallist@2.1.2:
     resolution: {integrity: sha512-ncTzHV7NvsQZkYe1DW7cbDLm0YpzHmZF5r/iyP3ZnQtMiJ+pjzisCiMNI+Sj+xQF5pXhSHxSB3uDbsBTzY/c2A==}
+    dev: false
+
+  /yaml@2.5.1:
+    resolution: {integrity: sha512-bLQOjaX/ADgQ20isPJRvF0iRUHIxVhYvr53Of7wGcWlO2jvtUlH5m87DsmulFVxRpNLOnI4tB6p/oh8D7kpn9Q==}
+    engines: {node: '>= 14'}
+    hasBin: true
     dev: false
 
   /yargs-parser@20.2.9:

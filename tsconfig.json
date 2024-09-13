@@ -23,6 +23,7 @@
       "@assertions": ["./src/assertions/index.ts"],
       "@triggers": ["./src/triggers/index.ts"],
       "@automations": ["./src/automations/index.ts"],
+      "@test-support": ["./src/test-support/index.ts"],
       "@lib": ["./src/lib/index.ts"]
     }
   },

@@ -6,14 +6,19 @@
   "main": "index.js",
   "scripts": {
     "start": "vite-node src/run.ts",
-    "types": "tsc --noEmit --emitDeclarationOnly false"
+    "types": "tsc --noEmit --emitDeclarationOnly false",
+    "test:e2e": "vitest --config vitest.e2e.config.ts",
+    "generate-virtual-config": "vite-node ./src/test-support/run-generate-virtual-config.ts",
+    "assign-areas": "vite-node ./src/test-support/assign-areas"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@catalystic/json-to-yaml": "^1.0.0",
     "@types/jsdom": "^21.1.7",
     "@types/node": "^22.5.4",
+    "docker-compose": "^0.24.8",
     "dotenv": "^16.4.5",
     "hass-lego": "^1.7.0",
     "home-assistant-js-websocket": "^9.4.0",

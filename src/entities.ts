@@ -11,13 +11,16 @@ export const entities = {
     tv: "media_player.lg_webos_smart_tv",
   },
   bedroom: {
+    light: "light.bedroom",
     speaker: "media_player.bedroom_speaker",
     motionSensor: "binary_sensor.bedroom_sensor_sensor_state_motion",
   },
-  bathroom: {
+  mainBathroom: {
+    light: "light.bathroom",
     motionSensor: "binary_sensor.bathroom_motion_sensor_occupancy",
   },
   hallway: {
+    light: "light.hallway",
     motionSensor: "binary_sensor.hallway_motion_sensor_occupancy",
   },
   global: {
