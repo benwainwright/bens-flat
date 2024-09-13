@@ -19,23 +19,34 @@
         "aliases": [],
         "floor_id": null,
         "icon": null,
-        "id": "kitchen",
-        "labels": [],
-        "name": "Kitchen",
-        "picture": null,
-        "created_at": "2024-09-13T20:16:29.895397+00:00",
-        "modified_at": "2024-09-13T20:16:29.895398+00:00"
-      },
-      {
-        "aliases": [],
-        "floor_id": null,
-        "icon": null,
         "id": "bedroom",
         "labels": [],
         "name": "Bedroom",
         "picture": null,
         "created_at": "2024-09-13T20:16:29.895423+00:00",
         "modified_at": "2024-09-13T20:16:29.895424+00:00"
+      },
+      {
+        "aliases": [],
+        "floor_id": null,
+        "icon": null,
+        "id": "main_bathroom",
+        "labels": [],
+        "name": "Main Bathroom",
+        "picture": null,
+        "created_at": "2024-09-13T20:46:07.280735+00:00",
+        "modified_at": "2024-09-13T20:46:07.280738+00:00"
+      },
+      {
+        "aliases": [],
+        "floor_id": null,
+        "icon": null,
+        "id": "hallway",
+        "labels": [],
+        "name": "Hallway",
+        "picture": null,
+        "created_at": "2024-09-13T20:46:20.100167+00:00",
+        "modified_at": "2024-09-13T20:46:20.100168+00:00"
       }
     ]
   }
