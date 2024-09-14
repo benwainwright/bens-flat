@@ -20,18 +20,35 @@ export const domains = {
   switch: {
     supportedByVirtual: true,
     states: ["on", "off"],
+    commands: {
+      on: "switch.turn_on",
+      off: "switch.turn_off",
+    },
   },
   binary_sensor: {
     supportedByVirtual: true,
+    virtualServices: true,
     states: ["on", "off"],
+    commands: {
+      on: "virtual.turn_on",
+      off: "virtual.turn_off",
+    },
   },
   light: {
     supportedByVirtual: true,
     states: ["on", "off"],
+    commands: {
+      on: "light.turn_on",
+      off: "light.turn_off",
+    },
   },
   cover: {
     supportedByVirtual: true,
     states: ["open", "closed"],
+    commands: {
+      open: "cover.open_cover",
+      closed: "cover.close_cover",
+    },
   },
   scene: {
     supportedByVirtual: false,
