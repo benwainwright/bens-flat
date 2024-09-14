@@ -2,7 +2,7 @@ import { IClient } from "homeassistant-typescript";
 import { Domain, domains, entities, Entity } from "../entities.ts";
 import { Call, setStates } from "./set-states.ts";
 
-export const resetStatesToInitialValues = async (client: IClient) => {
+export const resetStatesToInitialValues = async () => {
   const calls = Object.entries(entities).flatMap(([domain, entities]) => {
     const config = domains[domain as Domain];
 
@@ -15,5 +15,5 @@ export const resetStatesToInitialValues = async (client: IClient) => {
     return [];
   });
 
-  await setStates(client, calls);
+  await setStates(...calls);
 };

@@ -3,7 +3,7 @@ import { Domain, domains } from "../entities.ts";
 
 export type Call = [id: string, state: string];
 
-export const setStates = async (client: IClient, calls: Call[]) => {
+export const setStates = async (...calls: Call[]) => {
   await Promise.all(
     calls.map(async ([id, state]) => {
       const [domain] = id.split(".");
@@ -13,12 +13,10 @@ export const setStates = async (client: IClient, calls: Call[]) => {
         throw new Error(`No commands for domain ${domain}`);
       }
 
-      type States = typeof config.commands;
-
       // @ts-ignore
       const [commandDomain, service] = config.commands[state as any].split(".");
 
-      await client.callService({
+      await rawClient.callService({
         domain: commandDomain,
         service: service,
         service_data: {

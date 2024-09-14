@@ -1,5 +1,3 @@
-import { exec } from "node:child_process";
-import { promisify } from "node:util";
 import { v2 as compose } from "docker-compose";
 import path from "node:path";
 import { delay } from "./delay.ts";

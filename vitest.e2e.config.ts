@@ -9,6 +9,7 @@ export default defineConfig({
     },
     globals: true,
     testTimeout: 30 * 1000,
+    setupFiles: ["./src/test-support/setup-tests-e2e.ts"],
     globalSetup: "./src/test-support/e2e-global-setup.ts",
     include: ["src/tests/**/*.spec.ts"],
   },
