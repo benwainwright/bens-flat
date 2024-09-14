@@ -25,6 +25,7 @@ import {
   whenMotionIsDetectedInTheHallway,
   whenMotionIsDetectedInTheLivingRoom,
 } from "@triggers";
+import { whenMotionIsDetectedInBedroom } from "../triggers/when-motion-is-detected-in-the-bedroom.ts";
 
 export const livingRoomMotionSensor = new Automation({
   name: "Living room motion sensor",
@@ -41,7 +42,7 @@ export const livingRoomMotionSensor = new Automation({
 
 export const bedroomMotionSensor = new Automation({
   name: "Bedroom motion sensor",
-  trigger: whenMotionIsDetectedInTheBathroom,
+  trigger: whenMotionIsDetectedInBedroom,
   mode: ExecutionMode.Restart,
   actions: [
     ifSleepModeIs("off"),
