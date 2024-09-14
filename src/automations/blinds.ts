@@ -1,4 +1,4 @@
-import { Automation, sequence, when } from "hass-lego";
+import { Automation, when } from "hass-lego";
 
 import {
   ifBlindsDefaultPositionIsSetToOpen,

@@ -1,4 +1,6 @@
 import { entities } from "../entities.ts";
 import { closeCover } from "./hass/close-cover.ts";
 
-export const closeLivingRoomBlinds = closeCover(entities.livingRoom.blinds);
+const { livingRoomBlinds } = entities.cover;
+
+export const closeLivingRoomBlinds = closeCover(livingRoomBlinds.id);

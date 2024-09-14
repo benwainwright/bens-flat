@@ -1,7 +1,9 @@
 import { Trigger } from "hass-lego";
 import { entities } from "../entities.ts";
 
+const { blindsDefaultOpen } = entities.switch;
+
 export const whenBlindsDefaultPositionChanges = new Trigger(
   "When blinds default position changes",
-  entities.global.switch.blindsDefaultPositionOpen
+  blindsDefaultOpen.id
 );

@@ -68,13 +68,13 @@ export const tvModeOff = new Automation({
     concurrently([
       sequence([
         ifLivingRoomStateHasAlreadyBeenSaved,
-        turnOnScene(entities.livingRoom.restoreState),
-        deleteScene(entities.livingRoom.restoreState),
+        turnOnScene(entities.scene.restoreState.id),
+        deleteScene(entities.scene.restoreState.id),
       ]),
       sequence([
         waitMinutes(5),
         ifTvModeIs("off"),
-        ifSwitchIsOn(entities.global.switch.blindsDefaultPositionOpen),
+        ifSwitchIsOn(entities.switch.blindsDefaultOpen.id),
         openLivingRoomBlinds,
       ]),
     ]),

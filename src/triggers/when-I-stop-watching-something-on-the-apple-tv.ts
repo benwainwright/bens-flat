@@ -1,9 +1,11 @@
 import { Trigger } from "hass-lego";
 import { entities } from "../entities.ts";
 
+const { appleTv } = entities.media_player;
+
 export const whenIStopWatchingSomethingOnTheAppleTv = new Trigger(
   "When I stop watching someting on the apple tv",
-  entities.livingRoom.appleTv,
+  appleTv.id,
   (event) => {
     const { old_state, new_state } = event.hassEvent.data;
 

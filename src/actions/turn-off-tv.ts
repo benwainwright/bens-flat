@@ -1,4 +1,6 @@
 import { entities } from "../entities.ts";
 import { turnOffMediaPlayer } from "./hass/turn-off-media-player.ts";
 
-export const turnOffTv = turnOffMediaPlayer(entities.livingRoom.tv);
+const { tv } = entities.media_player;
+
+export const turnOffTv = turnOffMediaPlayer(tv.id);

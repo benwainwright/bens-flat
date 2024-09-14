@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "vite-node src/run.ts",
-    "types": "tsc --noEmit --emitDeclarationOnly false",
+    "types": "tsc --watch --noEmit --emitDeclarationOnly false",
     "test:e2e": "vitest --config vitest.e2e.config.ts",
     "generate-virtual-config": "vite-node ./src/test-support/run-generate-virtual-config.ts",
     "assign-areas": "vite-node ./src/test-support/assign-areas"

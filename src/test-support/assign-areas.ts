@@ -1,34 +1,27 @@
 import { IClient } from "homeassistant-typescript";
-import { entities } from "../entities.ts";
-import { getIds } from "./get-ids.ts";
-import { supportedWithInitialValues } from "./supported-by-virtual-with-initial-values.ts";
+import { domains, entities, Entity } from "../entities.ts";
 
 export const assignAreas = async (client: IClient) => {
+  const supported = Object.entries(domains)
+    .filter(([, config]) => config.supportedByVirtual)
+    .map(([domain]) => domain);
+
   await Promise.all(
-    Object.entries(entities)
-      .filter(([key]) => key !== "global")
-      .flatMap(async ([area, ids]) => {
-        const areaId = area
-          .split(/\.?(?=[A-Z])/)
-          .join("_")
-          .toLowerCase();
-
-        const idsToAddToArea = getIds(ids);
-
-        return idsToAddToArea.map(async (id) => {
-          const [domain, idPart] = id.split(".");
-          if (Object.keys(supportedWithInitialValues).includes(domain)) {
-            console.log(`Adding ${id} to ${areaId}`);
+    Object.entries(entities).flatMap(([domain, entities]) => {
+      if (supported.includes(domain)) {
+        return Object.values<Entity>(entities).map(async (entity) => {
+          if (entity.area !== "none") {
             await client.callService({
               domain: "homeassistant",
               service: "add_entity_to_area",
               service_data: {
-                area_id: areaId,
-                entity_id: id,
+                area_id: entity.area,
+                entity_id: entity.id,
               },
             });
           }
         });
-      })
+      }
+    })
   );
 };

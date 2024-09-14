@@ -67,7 +67,7 @@ export const homeModeSwitchChangesToOff = new Automation({
   name: "Home mode switch changes to off",
   trigger: whenHomeModeTurnsOff,
   actions: [
-    ifSwitchIsOff(entities.global.switch.visitorMode),
+    ifSwitchIsOff(entities.switch.visitorMode.id),
     concurrently([
       turnBathroomLightsOff,
       turnBedroomLightsOff,
@@ -91,7 +91,10 @@ export const welcomeHomeRoutine = new Automation({
   trigger: whenHomeModeTurnsOn,
   actions: [
     mediaPlayerSetVolume(
-      [entities.bedroom.speaker, entities.livingRoom.speaker],
+      [
+        entities.media_player.bedroomSpeaker.id,
+        entities.media_player.livingRoomSpeaker.id,
+      ],
       0.5
     ),
     playMyDiscoverWeekly,
