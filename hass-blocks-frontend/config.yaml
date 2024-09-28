@@ -5,6 +5,7 @@ slug: "hass-blocks-frontend"
 hassio_role: default
 homeassistant_api: true
 ingress: true
+network_mode: host
 ingress_port: 3040
 webui: "http://[HOST]:[PORT]/"
 init: false

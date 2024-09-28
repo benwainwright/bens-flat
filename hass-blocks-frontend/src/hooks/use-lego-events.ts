@@ -25,7 +25,7 @@ export const useLegoEvents = () => {
   const [log, setLog] = useState<TransmittedHassLegoEvent[]>([]);
 
   useEffect(() => {
-    const socket = io(`ws://localhost:3001`);
+    const socket = io(`ws://hass-blocks:3001`);
 
     socket.onAny(() => {
       setConnectionStatus(
