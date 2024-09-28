@@ -14,7 +14,6 @@ COPY ./tsconfig.json /tsconfig.json
 COPY ./.eslintrc.json /.eslintrc.json
 COPY ./next.config.js /next.config.js
 RUN yarn build
-COPY ./dist /dist
 
 RUN chmod 755 /run.sh
 
