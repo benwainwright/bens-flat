@@ -9,7 +9,7 @@ const outputIngressEntry = async () => {
 
   const {
     data: { ingress_url: hassBlocksIngressUrl },
-  } = await makeHassRequest(`/addons/hass-blocks/info`);
+  } = await makeHassRequest(`/addons/bdd5e753_hass-blocks/info`);
 
   const config = JSON.stringify(
     {
