@@ -11,6 +11,7 @@ COPY ./yarn.lock /yarn.lock
 RUN yarn install --production --frozen-lockfile
 COPY ./src /src
 COPY ./config.yaml /config.yaml
+COPY ./vite.config.ts /vite.config.ts
 COPY ./run.sh /run.sh
 COPY ./tsconfig.json /tsconfig.json
 
