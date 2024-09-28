@@ -9,6 +9,7 @@ RUN \
 COPY ./package.json /package.json
 COPY ./yarn.lock /yarn.lock
 RUN yarn install --production --frozen-lockfile
+RUN yarn build
 COPY ./.next /.next
 
 RUN chmod 755 /run.sh
