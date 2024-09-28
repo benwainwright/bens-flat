@@ -12,6 +12,7 @@ RUN yarn install --production --frozen-lockfile
 COPY ./src /src
 COPY ./tsconfig.json /tsconfig.json
 COPY ./.eslintrc.json /.eslintrc.json
+COPY ./next.config.js /next.config.js
 RUN yarn build
 
 RUN chmod 755 /run.sh

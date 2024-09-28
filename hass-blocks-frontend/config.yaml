@@ -1,11 +1,11 @@
 name: "Hass Blocks Frontend"
 description: "Visualisation of Hass Blocks automations"
-version: "1.0.3"
+version: "1.0.8"
 slug: "hass-blocks-frontend"
 homeassistant_api: true
 ingress: true
 network_mode: host
-ports: 
+ports:
   3040/tcp: 3040
 init: false
 map:
