@@ -17,6 +17,7 @@ ONBUILD COPY ./.eslintrc.json /.eslintrc.json
 ONBUILD COPY ./next.config.js /next.config.js
 
 FROM build_base as build_addon
+ONBUILD RUN yarn get-ingress 
 ONBUILD RUN yarn build
 
 FROM build_base as build_local
