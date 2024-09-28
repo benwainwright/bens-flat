@@ -5,6 +5,7 @@ services:
       context: ./automations
       args:
         BUILD_FROM: ghcr.io/home-assistant/amd64-base:latest
+        BUILD_TYPE: local
     volumes:
       - /etc/localtime:/etc/localtime:ro
     ports:
@@ -18,6 +19,7 @@ services:
       context: ./hass-blocks-frontend
       args:
         BUILD_FROM: ghcr.io/home-assistant/amd64-base:latest
+        BUILD_TYPE: local
     volumes:
       - /etc/localtime:/etc/localtime:ro
     ports:
