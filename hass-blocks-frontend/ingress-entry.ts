@@ -4,7 +4,7 @@ import { writeFileSync } from "node:fs";
 const makeRequest = async () => {
   const config = getConfig();
 
-  const finalUrl = `http://${config.host}:${config.port}${config.httpPath}/addons/self/info`;
+  const finalUrl = `http://${config.host}:${config.port}/addons/self/info`;
 
   console.log(finalUrl);
 
