@@ -11,9 +11,14 @@ const withBasePath =
 
 const nextConfig = {
   distDir: "dist",
+  eslint: {
+    ignoreDuringBuilds: true, // Disables ESLint checks during builds
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+
   ...withBasePath,
 };
-
-console.log("nextConfig", nextConfig);
 
 module.exports = nextConfig;

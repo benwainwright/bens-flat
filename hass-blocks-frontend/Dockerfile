@@ -18,8 +18,6 @@ ONBUILD COPY ./next.config.js /next.config.js
 
 FROM build_base as build_addon
 ONBUILD COPY ./ingress-entry.ts /ingress-entry.ts
-ONBUILD RUN yarn get-ingress 
-ONBUILD RUN yarn build
 
 FROM build_base as build_local
 ONBUILD COPY ./.env /.env
