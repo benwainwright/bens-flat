@@ -6,7 +6,7 @@ homeassistant_api: true
 host_network: false
 init: false
 ports:
-  - 3001/tcp: 3001
+  3001/tcp: 3001
 map:
   - config:rw
 arch:
