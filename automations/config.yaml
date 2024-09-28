@@ -1,6 +1,6 @@
 name: "Hass Blocks"
 description: "Building blocks for Home Assistant"
-version: "1.0.6"
+version: "1.0.7"
 slug: "hass-blocks"
 homeassistant_api: true
 host_network: false
