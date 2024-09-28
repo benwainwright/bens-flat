@@ -14,7 +14,7 @@ ONBUILD COPY ./src /src
 ONBUILD COPY ./run.sh /run.sh
 ONBUILD COPY ./tsconfig.json /tsconfig.json
 ONBUILD COPY ./.eslintrc.json /.eslintrc.json
-ONBUILD COPY ./next.config.ts /next.config.ts
+ONBUILD COPY ./next.config.js /next.config.js
 
 FROM build_base as build_addon
 ONBUILD RUN yarn build
