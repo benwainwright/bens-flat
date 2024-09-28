@@ -34,7 +34,7 @@
     ".next/types/**/*.ts",
     "src/components/block-execution-summary",
     "dist/types/**/*.ts"
-  ],
+, "next.config.js"  ],
   "exclude": [
     "node_modules"
   ]
