@@ -2,12 +2,11 @@ name: "Hass Blocks Frontend"
 description: "Visualisation of Hass Blocks automations"
 version: "1.0.0"
 slug: "hass-blocks-frontend"
-hassio_role: default
 homeassistant_api: true
 ingress: true
 network_mode: host
-ingress_port: 3040
-webui: "http://[HOST]:[PORT]/"
+ports: 
+  - "3040/tcp": 3040
 init: false
 map:
   - config:rw
