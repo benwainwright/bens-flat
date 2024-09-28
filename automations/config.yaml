@@ -5,11 +5,10 @@ slug: "hass-blocks"
 homeassistant_api: true
 host_network: true
 init: false
-ingress: true
-ingress_port: 3001
+ports:
+  3001/tcp: 3001
 map:
   - config:rw
-
 
 environment:
   NODE_ENV: production

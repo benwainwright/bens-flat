@@ -2,21 +2,6 @@ import { EventBus, renderSimpleLog, when } from "hass-lego";
 
 import { getConnection } from "@lib";
 
-import {
-  bathroomMotionSensor,
-  bedroomMotionSensor,
-  hallwayMotionSensor,
-  livingRoomMotionSensor,
-  tvModeOff,
-  tvModeOn,
-  triggerTvModeOff,
-  triggerTvModeOn,
-  openAndCloseBlinds,
-  whenILeaveHome,
-  homeMode,
-  homeModeSwitchChangesToOff,
-  welcomeHomeRoutine,
-} from "@automations";
 import { registerAllAutomations } from "./automations/register-all.ts";
 
 const events = new EventBus();
@@ -31,7 +16,12 @@ registerAllAutomations(client);
 
 renderSimpleLog(events, true);
 
-const server = client.getWebsocketServer();
+const server = client.getWebsocketServer({
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+});
 
 const port = 3001;
 

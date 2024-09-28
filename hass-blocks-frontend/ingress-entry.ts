@@ -6,14 +6,9 @@ const outputIngressEntry = async () => {
     data: { ingress_url: frontendIngressUrl },
   } = await makeHassRequest(`/addons/self/info`);
 
-  const {
-    data: { ingress_url: hassBlocksIngressUrl },
-  } = await makeHassRequest(`/addons/bdd5e753_hass-blocks/info`);
-
   const config = JSON.stringify(
     {
       frontendIngressUrl,
-      hassBlocksIngressUrl,
     },
     null,
     2

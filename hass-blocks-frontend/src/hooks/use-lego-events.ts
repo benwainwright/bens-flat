@@ -26,7 +26,7 @@ export const useLegoEvents = () => {
 
   useEffect(() => {
     const socket = io(
-      `ws://${process.env.NEXT_PUBLIC_LEGO_HOST}:${process.env.NEXT_PUBLIC_LEGO_PORT}`
+      `ws://${window.location.hostname}:${process.env.NEXT_PUBLIC_LEGO_PORT}`
     );
 
     socket.onAny(() => {
