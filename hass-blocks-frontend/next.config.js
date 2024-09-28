@@ -2,7 +2,7 @@
 
 const withBasePath =
   process.env["NODE_ENV"] === "production"
-    ? { assetPrefix: "/bdd5e753_hass-blocks-frontend/ingress" }
+    ? { basePath: "/bdd5e753_hass-blocks-frontend/ingress" }
     : {};
 
 /** @type {import('next').NextConfig} */

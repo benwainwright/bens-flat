@@ -9,6 +9,8 @@ ports:
   3001/tcp: 3001
 map:
   - config:rw
+
+
 environment:
   NODE_ENV: production
 

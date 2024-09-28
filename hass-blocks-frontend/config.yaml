@@ -1,6 +1,7 @@
 name: "Hass Blocks Frontend"
 description: "Visualisation of Hass Blocks automations"
-version: "1.0.21"
+ingress_entry: "/bdd5e753_hass-blocks-frontend/ingress"
+version: "1.0.22"
 slug: "hass-blocks-frontend"
 homeassistant_api: true
 ingress: true
