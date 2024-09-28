@@ -6,7 +6,7 @@ homeassistant_api: true
 ingress: true
 network_mode: host
 ports: 
-  - "3040/tcp": 3040
+  - 3040/tcp: 3040
 init: false
 map:
   - config:rw
