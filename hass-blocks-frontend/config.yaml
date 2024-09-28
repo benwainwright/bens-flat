@@ -1,11 +1,13 @@
 name: "Hass Blocks Frontend"
 description: "Visualisation of Hass Blocks automations"
-version: "1.0.13"
+version: "1.0.14"
 slug: "hass-blocks-frontend"
 homeassistant_api: true
 ingress: true
 network_mode: host
 init: false
+environment:
+  NODE_ENV: production
 map:
   - config:rw
 arch:
