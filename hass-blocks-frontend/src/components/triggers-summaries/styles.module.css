@@ -1,0 +1,6 @@
+.container {
+  display: grid;
+  gap: 1em;
+  margin: 1em;
+  grid-auto-columns: 40em;
+}

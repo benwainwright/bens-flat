@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  gap: 1em;
+  flex-direction: column;
+  margin: 1em;
+}
+
+.statusMessage {
+  display: flex;
+  flex-direction: row;
+  margin: 0.5em 0;
+  gap: 1em;
+  align-items: center;
+  font-size: 1.2em;
+}

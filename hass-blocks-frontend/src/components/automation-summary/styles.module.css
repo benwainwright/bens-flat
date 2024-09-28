@@ -1,0 +1,19 @@
+.container {
+  border: 1px solid white;
+  padding: 0.5em;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  margin: 0.3em;
+}
+
+.header h2 {
+  flex-grow: 2;
+}
+
+.header button {
+  padding: 0 0.5em;
+  font-weight: bold;
+}

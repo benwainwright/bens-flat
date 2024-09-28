@@ -1,0 +1,30 @@
+{
+  "name": "hass-lego-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start --port 3040",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "hass-lego": "^1.8.0",
+    "next": "14.2.9",
+    "prettier": "^3.3.3",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-icons": "^5.3.0",
+    "react-spinners": "^0.14.1",
+    "react-spinners-kit": "^1.9.1",
+    "socket.io-client": "^4.7.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.9",
+    "typescript": "^5"
+  }
+}
