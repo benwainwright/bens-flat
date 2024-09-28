@@ -1,0 +1,26 @@
+services:
+  hass-blocks:
+    container_name: hass-blocks
+    build:
+      context: ./automations
+      args:
+        BUILD_FROM: ghcr.io/home-assistant/amd64-base:latest
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "3001:3001"
+    restart: unless-stopped
+    privileged: true
+
+  hass-blocks-frontend:
+    container_name: hass-blocks-frontend
+    build:
+      context: ./hass-blocks-frontend
+      args:
+        BUILD_FROM: ghcr.io/home-assistant/amd64-base:latest
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "3040:80"
+    restart: unless-stopped
+    privileged: true

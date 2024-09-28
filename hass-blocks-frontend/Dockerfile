@@ -10,6 +10,7 @@ COPY ./package.json /package.json
 COPY ./yarn.lock /yarn.lock
 RUN yarn install --production --frozen-lockfile
 COPY ./src /src
+COPY ./run.sh /run.sh
 COPY ./tsconfig.json /tsconfig.json
 COPY ./.eslintrc.json /.eslintrc.json
 COPY ./next.config.js /next.config.js
