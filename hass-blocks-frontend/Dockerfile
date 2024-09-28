@@ -13,7 +13,7 @@ COPY ./src /src
 COPY ./tsconfig.json /tsconfig.json
 COPY ./.eslintrc.json /.eslintrc.json
 RUN yarn build
-COPY ./.next /.next
+COPY ./dist /dist
 
 RUN chmod 755 /run.sh
 
