@@ -16,16 +16,19 @@ export const setupMatchers = () => {
       };
 
       try {
-        const state = await vi.waitFor(async () => {
-          const { state } = await rawClient.getState(id);
-          if (state !== expectedState) {
-            throw new ExpectFailedError(
-              diffMessage(expectedState, state),
-              state
-            );
-          }
-          return state;
-        });
+        const state = await vi.waitFor(
+          async () => {
+            const { state } = await rawClient.getState(id);
+            if (state !== expectedState) {
+              throw new ExpectFailedError(
+                diffMessage(expectedState, state),
+                state
+              );
+            }
+            return state;
+          },
+          { timeout: 30_000 }
+        );
 
         return {
           pass: true,

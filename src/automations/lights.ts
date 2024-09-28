@@ -13,6 +13,7 @@ import {
 } from "@actions";
 
 import {
+  ifBathroomMotionSensorSwitchIs,
   ifBedroomMotionSensorIs,
   ifHallwayMotionSensorIs,
   ifLivingRoomMotionSensorIs,
@@ -58,7 +59,7 @@ export const bathroomMotionSensor = new Automation({
   trigger: whenMotionIsDetectedInTheBathroom,
   mode: ExecutionMode.Restart,
   actions: [
-    ifBedroomMotionSensorIs("on"),
+    ifBathroomMotionSensorSwitchIs("on"),
     turnBathroomLightsOn,
     waitMinutes(5),
     turnBathroomLightsOff,

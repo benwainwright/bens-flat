@@ -1,3 +1,7 @@
+import { patchSettimeout } from "./set-timeout-patch.ts";
+
+const { advanceTime } = patchSettimeout();
+
 import { IClient } from "homeassistant-typescript";
 import { registerAllAutomations } from "../automations/register-all.ts";
 import { getTestClient } from "./test-client.ts";
@@ -9,6 +13,7 @@ declare global {
   var rawClient: IClient;
   var client: LegoClient;
   var bus: EventBus;
+  var advanceTime: (milliseconds: number) => void;
 }
 
 const { client, rawClient, bus } = await getTestClient();
@@ -26,6 +31,7 @@ bus.subscribe((event) => {
   }
 });
 
+globalThis.advanceTime = advanceTime;
 globalThis.rawClient = rawClient;
 globalThis.bus = bus;
 globalThis.client = client;

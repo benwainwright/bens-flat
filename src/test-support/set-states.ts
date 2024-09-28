@@ -4,6 +4,7 @@ import { Domain, domains } from "../entities.ts";
 export type Call = [id: string, state: string];
 
 export const setStates = async (...calls: Call[]) => {
+  console.log(`Setstates: ${calls}`);
   await Promise.all(
     calls.map(async ([id, state]) => {
       const [domain] = id.split(".");
@@ -16,13 +17,17 @@ export const setStates = async (...calls: Call[]) => {
       // @ts-ignore
       const [commandDomain, service] = config.commands[state as any].split(".");
 
-      await rawClient.callService({
+      const params = {
         domain: commandDomain,
         service: service,
         service_data: {
           entity_id: id,
         },
-      });
+      };
+
+      console.log(params);
+
+      await rawClient.callService(params);
     })
   );
 };

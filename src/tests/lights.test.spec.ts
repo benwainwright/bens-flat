@@ -1,7 +1,7 @@
 import { setStates } from "@test-support";
 import { entities } from "../entities.ts";
 import { resetStatesToInitialValues } from "../test-support/reset-states.ts";
-import { livingRoomMotionSensor } from "@automations";
+import { delay } from "../test-support/delay.ts";
 
 afterEach(async () => {
   await resetStatesToInitialValues();
@@ -29,6 +29,20 @@ describe("The living room motion sensor", () => {
       );
     }
   );
+  it("if it triggers, it should turn back off after 30 minutes", async () => {
+    await setStates(
+      [entities.switch.tvMode.id, "off"],
+      [entities.switch.livingRoomMotionSensor.id, "on"]
+    );
+
+    await setStates([entities.binary_sensor.livingRoomMotionSensor.id, "on"]);
+
+    await expect(entities.light.livingRoomLights.id).toHaveState("on");
+
+    advanceTime(1000 * 60 * 30 + 1000 * 10);
+
+    await expect(entities.light.livingRoomLights.id).toHaveState("off");
+  });
 });
 
 describe("The bedroom motion sensor", () => {
@@ -51,6 +65,21 @@ describe("The bedroom motion sensor", () => {
       await expect(entities.light.bedroomLights.id).toHaveState(bedroomLights);
     }
   );
+
+  it("if it triggers, it should turn back off after 10 minutes", async () => {
+    await setStates(
+      [entities.switch.sleepMode.id, "off"],
+      [entities.switch.bedroomMotionSensor.id, "on"]
+    );
+
+    await setStates([entities.binary_sensor.bedroomMotionSensor.id, "on"]);
+
+    await expect(entities.light.bedroomLights.id).toHaveState("on");
+
+    advanceTime(1000 * 60 * 11);
+
+    await expect(entities.light.bedroomLights.id).toHaveState("off");
+  });
 });
 
 describe("The hallway motion sensor", () => {
@@ -68,6 +97,18 @@ describe("The hallway motion sensor", () => {
       await expect(entities.light.hallwayLights.id).toHaveState(hallwayLights);
     }
   );
+
+  it("if it triggers, it should turn back off after 2 minutes", async () => {
+    await setStates([entities.switch.hallwayMotionSensor.id, "on"]);
+
+    await setStates([entities.binary_sensor.hallwayMotionSensor.id, "on"]);
+
+    await expect(entities.light.hallwayLights.id).toHaveState("on");
+
+    advanceTime(1000 * 60 * 3);
+
+    await expect(entities.light.hallwayLights.id).toHaveState("off");
+  });
 });
 
 describe("The bathroom motion sensor", () => {
@@ -87,4 +128,19 @@ describe("The bathroom motion sensor", () => {
       );
     }
   );
+
+  it("if it triggers, it should turn back off after 5 minutes", async () => {
+    await setStates([entities.switch.bathroomMotionSensor.id, "on"]);
+
+    await expect(entities.binary_sensor.bathroomMotionSensor.id).toHaveState(
+      "off"
+    );
+    await setStates([entities.binary_sensor.bathroomMotionSensor.id, "on"]);
+
+    await expect(entities.light.bathroomLights.id).toHaveState("on");
+
+    advanceTime(1000 * 60 * 6);
+
+    await expect(entities.light.bathroomLights.id).toHaveState("off");
+  });
 });

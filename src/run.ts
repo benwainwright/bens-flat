@@ -29,7 +29,7 @@ if (!client) {
 
 registerAllAutomations(client);
 
-renderSimpleLog(events, false);
+renderSimpleLog(events, true);
 
 const server = client.getWebsocketServer();
 

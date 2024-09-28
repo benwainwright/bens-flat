@@ -22,3 +22,8 @@ export const openAndCloseBlinds = new Automation({
     }),
   ],
 });
+
+export const leftWindowBlinds = new Automation({
+  name: "Open left window blind",
+  t
+})

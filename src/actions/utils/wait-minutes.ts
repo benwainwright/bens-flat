@@ -5,7 +5,12 @@ export const waitMinutes = (duration: number) =>
     name: `Wait ${duration} minutes`,
     callback: async () => {
       return await new Promise<void>((accept) =>
-        setTimeout(accept, 1000 * 60 * duration)
+        setTimeout(
+          () => {
+            accept();
+          },
+          1000 * 60 * duration
+        )
       );
     },
   });
