@@ -9,7 +9,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
     ports:
-      - "3001:3001"
+      - "3020:3001"
     restart: unless-stopped
     privileged: true
 
@@ -21,9 +21,12 @@ services:
         BUILD_FROM: ghcr.io/home-assistant/amd64-base:latest
         BUILD_TYPE: local
     volumes:
+      - ./hass-blocks-frontend/src:/src
       - /etc/localtime:/etc/localtime:ro
 
     environment:
+      NEXT_PUBLIC_LEGO_HOST: localhost
+      NEXT_PUBLIC_LEGO_PORT: 3020
       NODE_ENV: development
     ports:
       - "8080:3000"

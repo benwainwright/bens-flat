@@ -4,7 +4,10 @@ const { readFileSync } = require("fs");
 
 const withBasePath =
   process.env["NODE_ENV"] === "production"
-    ? { assetPrefix: readFileSync("ingress-entry", "utf-8") }
+    ? {
+        assetPrefix: JSON.parse(readFileSync("config-build", "utf-8"))
+          .frontendIngressUrl,
+      }
     : {};
 
 /** @type {import('next').NextConfig} */

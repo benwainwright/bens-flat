@@ -1,0 +1,15 @@
+.item {
+  list-style: none;
+  font-size: 2rem;
+}
+
+.list {
+  display: flex;
+  padding: 1em 0;
+  gap: 1em;
+}
+
+.nav {
+  border-bottom: 1px solid white;
+  padding: 0 1rem;
+}

@@ -3,7 +3,7 @@ description: "Building blocks for Home Assistant"
 version: "1.0.8"
 slug: "hass-blocks"
 homeassistant_api: true
-host_network: false
+host_network: true
 init: false
 ports:
   3001/tcp: 3001
