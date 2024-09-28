@@ -3,6 +3,7 @@ description: "Visualisation of Hass Blocks automations"
 version: "1.0.28"
 slug: "hass-blocks-frontend"
 homeassistant_api: true
+hassio_api: true
 ingress: true
 network_mode: host
 init: false
