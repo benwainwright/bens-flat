@@ -5,7 +5,8 @@ slug: "hass-blocks"
 hassio_role: default
 homeassistant_api: true
 init: false
-map: config:rw
+map:
+  - config:rw
 arch:
   - aarch64
   - amd64
