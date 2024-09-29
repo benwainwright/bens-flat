@@ -1,16 +1,15 @@
-"use client";
-
 import { AutomationSummary } from "../automation-summary/automation-summary";
-import { useAutomations } from "@/hooks/use-automations";
+import { initialise } from "@/data/initialise";
 
-export const AutomationSummaries = () => {
-  const { automations } = useAutomations();
+export const AutomationSummaries = async () => {
 
-  return automations.map((automation) => (
+  const api = await initialise();
+  const automations = await api?.blocks.getAll({type: "automation"})
+
+  return automations?.map((automation) => (
     <AutomationSummary
       key={`automation-summary-${automation.name}`}
       name={automation.name}
-      executions={automation.executions}
     />
   ));
 };

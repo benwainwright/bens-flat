@@ -1,1 +1,1 @@
-export const MONGO_DUPLICATE_KEY = 11000
+export const MONGO_DUPLICATE_KEY = 11000;

@@ -1,19 +1,14 @@
-import styles from "./styles.module.css";
+"use client"
 import { TriggersSummaries } from "../triggers-summaries/triggers-summaries";
+import styles from "./styles.module.css";
 import { useState } from "react";
-import { ExecutedEvent } from "@/types/executed-event";
 
 interface AutomationSummaryProps {
   name: string;
-  executions: {
-    triggerName: string;
-    events: ExecutedEvent[];
-  }[];
 }
 
 export const AutomationSummary = ({
   name,
-  executions,
 }: AutomationSummaryProps) => {
   const [showDetail, setShowDetail] = useState(false);
   return (
@@ -22,11 +17,6 @@ export const AutomationSummary = ({
         <h2>Automation: {name}</h2>
         <button onClick={() => setShowDetail(!showDetail)}>Expand</button>
       </div>
-      <TriggersSummaries
-        executions={executions}
-        automation={name}
-        expand={showDetail}
-      />
     </div>
   );
 };
