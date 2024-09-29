@@ -1,5 +1,7 @@
 import { EventBus, renderSimpleLog, when } from "hass-lego";
 
+require("events").EventEmitter.defaultMaxListeners = 50;
+
 import { getConnection } from "@lib";
 
 import { registerAllAutomations } from "./automations/register-all.ts";
@@ -25,6 +27,6 @@ const server = client.getWebsocketServer({
 
 const port = 3001;
 
-server.listen(port, () => {
+server.listen(port, "0.0.0.0", () => {
   console.log(`Listening on port ${port}`);
 });

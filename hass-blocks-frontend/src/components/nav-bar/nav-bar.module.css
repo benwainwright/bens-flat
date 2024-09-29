@@ -1,6 +1,10 @@
 .item {
   list-style: none;
-  font-size: 2rem;
+  font-size: 1.5rem;
+}
+
+.item a:hover {
+  color: rgba(212, 212, 212, 0.865);
 }
 
 .list {

@@ -5,10 +5,16 @@ import { ExecutedEvent } from "@/types/executed-event";
 
 interface AutomationSummaryProps {
   name: string;
-  events: ExecutedEvent[];
+  executions: {
+    triggerName: string;
+    events: ExecutedEvent[];
+  }[];
 }
 
-export const AutomationSummary = ({ name, events }: AutomationSummaryProps) => {
+export const AutomationSummary = ({
+  name,
+  executions,
+}: AutomationSummaryProps) => {
   const [showDetail, setShowDetail] = useState(false);
   return (
     <div className={styles.container}>
@@ -17,8 +23,8 @@ export const AutomationSummary = ({ name, events }: AutomationSummaryProps) => {
         <button onClick={() => setShowDetail(!showDetail)}>Expand</button>
       </div>
       <TriggersSummaries
+        executions={executions}
         automation={name}
-        events={events}
         expand={showDetail}
       />
     </div>

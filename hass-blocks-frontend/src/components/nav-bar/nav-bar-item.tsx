@@ -5,6 +5,7 @@ interface NavBarItemProps {
   href: string;
   label: string;
 }
+
 export const NavBarItem = ({ href, label }: NavBarItemProps) => {
   return (
     <li className={styles.item}>
