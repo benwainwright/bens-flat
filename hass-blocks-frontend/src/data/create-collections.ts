@@ -7,6 +7,7 @@ export const createCollections = async (database: Db) => {
       await lastPromise;
       await database.createCollection(collectionName, {
         validator: { $jsonSchema: schema },
+        validationAction: "warn",
       });
     },
     Promise.resolve(),

@@ -24,6 +24,7 @@ services:
     volumes:
       - ./hass-blocks-frontend/src:/src
       - ./hass-blocks-frontend/mongo-data:/data
+      - ./hass-blocks-frontend/failed-insert:/failed-insert
       - /etc/localtime:/etc/localtime:ro
 
     environment:

@@ -13,8 +13,3 @@ const database = await initialise();
 await updateAutomations(socket, database);
 
 recordEvents(socket, database);
-
-setInterval(async () => {
-  const blocks = await database.blocks.getAll();
-  console.log(blocks);
-}, 5000);

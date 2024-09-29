@@ -1,5 +1,8 @@
-import { Db, ObjectId } from "mongodb";
+import { Db, ObjectId, MongoServerError } from "mongodb";
 import { schema, SchemaTypes } from "./schema";
+import { writeFileSync } from "node:fs";
+import { v4 } from "uuid";
+import { MONGO_DUPLICATE_KEY } from "./constants";
 
 export type DatabaseApi = {
   -readonly [K in keyof typeof schema]: Api<K, SchemaTypes<typeof schema>[K]>;
@@ -34,17 +37,38 @@ export const createApi = async <K extends keyof typeof schema>(
     update: async (...data) => {
       return (await Promise.all(
         data.map(async (item) => {
-          const { id, ...dataWithoutId } = item;
-          await collection.updateOne(
-            { id: item.id },
-            {
-              $setOnInsert: { ...data, created: new Date() },
-              $set: { ...dataWithoutId, updated: new Date() },
+          const params = {
+            filter: { id: item.id },
+            update: {
+              $set: { ...item, updated: new Date(), created: new Date() },
             },
-            { upsert: true },
-          );
+          };
+          try {
+            const { created, ...initialUpdate } = params.update.$set;
 
-          return data;
+            const result = await collection.updateOne(params.filter, {
+              $set: initialUpdate,
+            });
+
+            if (result.matchedCount === 0) {
+              await collection.insertOne(params.update.$set);
+            }
+
+            return data;
+          } catch (error) {
+            if (error instanceof MongoServerError) {
+              if (error.code !== MONGO_DUPLICATE_KEY) {
+                writeFileSync(
+                  `failed-insert/${v4()}.json`,
+                  JSON.stringify(params, null, 2),
+                );
+              }
+
+              console.log(
+                `Error: [${error.code}] ${error.message} ${error.errInfo?.detals}`,
+              );
+            }
+          }
         }),
       )) as Awaited<ReturnType<Api<K, TheType>["update"]>>;
     },

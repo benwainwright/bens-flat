@@ -30,20 +30,22 @@ type TypesFromBsonSchema<T extends BsonSchema> = T extends {
   bsonType: "string";
 }
   ? string
-  : T extends {
-        bsonType: "object";
-        properties: infer P;
-        required?: infer R extends ReadonlyArray<string>;
-        description?: string;
-      }
-    ? P extends Record<string, BsonSchema>
-      ? {
-          [K in keyof P]: K extends R[number]
-            ? TypesFromBsonSchema<P[K]>
-            : TypesFromBsonSchema<P[K]> | undefined;
+  : T extends { bsonType: "date" }
+    ? Date
+    : T extends {
+          bsonType: "object";
+          properties: infer P;
+          required?: infer R extends ReadonlyArray<string>;
+          description?: string;
         }
-      : never
-    : never;
+      ? P extends Record<string, BsonSchema>
+        ? {
+            [K in keyof P]: K extends R[number]
+              ? TypesFromBsonSchema<P[K]>
+              : TypesFromBsonSchema<P[K]> | undefined;
+          }
+        : never
+      : never;
 
 export type SchemaTypes<S extends typeof schema> = {
   [K in keyof S]: S[K] extends BsonSchema ? TypesFromBsonSchema<S[K]> : never;
@@ -100,11 +102,11 @@ export const schema = {
         description: "The current status of the trigger",
       },
       created: {
-        bsonType: "string",
+        bsonType: "date",
         description: "The time that the action was created",
       },
       updated: {
-        bsonType: "string",
+        bsonType: "date",
         description: "The time that the action was updated",
       },
       parent: reference("The parent block that this execution started within"),

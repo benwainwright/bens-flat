@@ -11,7 +11,6 @@ export const updateAutomations = async (
     socket.once(
       "automations",
       async (automationsFromLego: { id: string; name: string }[]) => {
-        console.log(automationsFromLego)
         const automations = await database.blocks.getAll({
           type: "automation",
         });
@@ -23,11 +22,13 @@ export const updateAutomations = async (
                 .map((automation) => automation.id)
                 .includes(recievedAutomation.id),
           )
-          .map((newAutomation) => ({
-            ...newAutomation,
-            status: "created",
-            type: "automation",
-          }));
+          .map((newAutomation) => {
+            return {
+              ...newAutomation,
+              status: "created",
+              type: "automation",
+            };
+          });
 
         await database.blocks.update(...missing);
         accept();
