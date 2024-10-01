@@ -1,27 +1,17 @@
 import styles from "./styles.module.css";
-import { StatusIcon } from "../status-icon/status-icon";
-import { ExecutedEvent } from "@/types/executed-event";
+import { Execution } from "@/hooks/use-executions";
 
 interface BlockExecutionSummaryProps {
-  events: ExecutedEvent[];
+  execution: Execution;
 }
 
 export const BlockExecutionSummary = ({
-  events,
+  execution,
 }: BlockExecutionSummaryProps) => {
-  const now = events
-    .slice()
-    .sort((a, b) => (new Date(a.timestamp) > new Date(b.timestamp) ? 1 : -1));
-
-  const last = now[now.length - 1];
-
   return (
     <tr className={styles.container}>
-      <td>
-        <StatusIcon events={events} />
-      </td>
-      <td>{last.type}</td>
-      <td>{last.name}</td>
+      <td>{execution.type}</td>
+      <td>{execution.instanceOf.name}</td>
     </tr>
   );
 };
