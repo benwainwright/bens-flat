@@ -24,6 +24,7 @@
     "react-spinners": "^0.14.1",
     "react-spinners-kit": "^1.9.1",
     "socket.io-client": "^4.7.5",
+    "swr": "^2.2.5",
     "uuid": "^10.0.0",
     "vite-node": "^2.1.1"
   },

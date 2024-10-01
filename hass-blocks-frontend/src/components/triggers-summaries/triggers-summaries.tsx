@@ -1,40 +1,41 @@
 "use client";
 
-import { TriggersSummary } from "../trigger-summary/trigger-summary";
+import { useState } from "react";
+import { TriggerSummary } from "../trigger-summary/trigger-summary";
 import styles from "./styles.module.css";
-import { ExecutedEvent } from "@/types/executed-event";
+import { useExecutions } from "@/hooks/use-executions";
 
 interface TriggerSummarriesProps {
   automation: string;
+  automationId: string;
   expand: boolean;
-  executions: {
-    triggerName: string;
-    events: ExecutedEvent[];
-  }[];
 }
 
 export const TriggersSummaries = ({
   automation,
   expand,
-  executions,
+  automationId,
 }: TriggerSummarriesProps) => {
-  const triggersString = executions.length === 1 ? "trigger" : "triggers";
+  const [showDetail, setShowDetail] = useState(false);
+
+  const { executions } = useExecutions({
+    type: "trigger",
+    parentId: automationId,
+    page: 1,
+    pageSize: 5,
+  });
 
   return (
     <div className={styles.container}>
-      {!expand ? (
-        <div>
-          {executions.length} {triggersString}
-        </div>
-      ) : (
-        executions.map((execution) => (
-          <TriggersSummary
-            automation={automation}
-            events={execution.events}
-            key={`trigger-summary-${execution.triggerName}`}
-          />
-        ))
-      )}
+      {!expand
+        ? null
+        : executions?.map((execution) => (
+            <TriggerSummary
+              automation={automation}
+              trigger={execution}
+              key={`trigger-summary-${execution.id}`}
+            />
+          ))}
     </div>
   );
 };

@@ -8,6 +8,11 @@ export type DatabaseApi = {
   -readonly [K in keyof typeof schema]: Api<K, SchemaTypes<typeof schema>[K]>;
 };
 
+interface PaginationParams {
+  page: number;
+  pageSize: number;
+}
+
 export interface Api<
   K extends keyof typeof schema,
   T extends SchemaTypes<typeof schema>[K],
@@ -18,12 +23,14 @@ export interface Api<
       id: string;
     })[]
   ) => Promise<T[]>;
-  getAll: (filter?: Partial<T>) => Promise<T[]>;
+  getAll: (filter?: Partial<T>, pagination?: PaginationParams) => Promise<T[]>;
+
+  countAll: (filter?: Partial<T>) => Promise<number>;
 }
 
 export const createApi = async <K extends keyof typeof schema>(
   database: Db,
-  collectionName: K,
+  collectionName: K
 ): Promise<Api<K, SchemaTypes<typeof schema>[K]>> => {
   type TheType = SchemaTypes<typeof schema>[K];
 
@@ -60,24 +67,35 @@ export const createApi = async <K extends keyof typeof schema>(
               if (error.code !== MONGO_DUPLICATE_KEY) {
                 writeFileSync(
                   `failed-insert/${v4()}.json`,
-                  JSON.stringify(params, null, 2),
+                  JSON.stringify(params, null, 2)
                 );
               }
 
               console.log(
-                `Error: [${error.code}] ${error.message} ${error.errInfo?.detals}`,
+                `Error: [${error.code}] ${error.message} ${error.errInfo?.detals}`
               );
             }
           }
-        }),
+        })
       )) as Awaited<ReturnType<Api<K, TheType>["update"]>>;
     },
-    getAll: async (filter) => {
+    getAll: async (filter, pagination) => {
       const theFilter = filter ?? {};
-      return (await collection.find(theFilter).toArray()).map((item) => {
-        const { _id, ...rest } = item;
-        return { id: _id.toString(), ...rest };
-      }) as Awaited<ReturnType<Api<K, TheType>["getAll"]>>;
+      const query = collection.find(theFilter);
+
+      const finalQuery = pagination
+        ? query
+            .skip((pagination.page - 1) * pagination.pageSize)
+            .limit(pagination.pageSize)
+        : query;
+
+      return (await finalQuery.toArray()) as Awaited<
+        ReturnType<Api<K, TheType>["getAll"]>
+      >;
+    },
+    countAll: async (filter) => {
+      const theFilter = filter ?? {};
+      return await collection.countDocuments(theFilter);
     },
   };
 };

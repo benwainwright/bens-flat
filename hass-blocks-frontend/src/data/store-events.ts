@@ -17,6 +17,8 @@ export const recordEvents = async (socket: Socket, database: DatabaseApi) => {
       status: event.status,
     });
 
+    console.log("event", event);
+
     await database.executions.update({
       id:
         event.type === "trigger"

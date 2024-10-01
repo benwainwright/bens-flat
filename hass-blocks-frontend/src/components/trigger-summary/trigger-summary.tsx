@@ -3,40 +3,21 @@ import { BlockExecutionSummary } from "../block-execution-summary/block-executio
 import styles from "./styles.module.css";
 import { StatusIcon } from "../status-icon/status-icon";
 import { ExecutedEvent } from "@/types/executed-event";
+import { schema, SchemaTypes } from "@/data/schema";
+import { Execution } from "@/hooks/use-executions";
 
 interface TriggerSummaryProps {
-  events: ExecutedEvent[];
+  trigger: Execution;
   automation: string;
 }
-export const TriggersSummary = ({
-  automation,
-  events,
-}: TriggerSummaryProps) => {
-  const trigger = events.find((item) => item.type === "trigger");
-  const [showDetail, setShowDetail] = useState(false);
-
-  const groupedByExecutionId = Object.entries(
-    events.reduce<Record<string, ExecutedEvent[]>>((accum, item) => {
-      accum[item.executeId] = [...(accum[item.executeId] ?? []), item];
-      return accum;
-    }, {})
-  );
-
-  const thisAutomation = groupedByExecutionId
-    .map(([, item]) => item)
-    .find(
-      (events) =>
-        events[0].type === "automation" && events[0].name === automation
-    );
-
+export const TriggerSummary = ({ trigger }: TriggerSummaryProps) => {
   return (
     <div className={styles.container}>
       <h3 className={styles.header}>
-        <StatusIcon events={thisAutomation ?? []} />
-        <span>Trigger: {trigger?.name}</span>
-        <button onClick={() => setShowDetail(!showDetail)}>Expand</button>
+        <span>Trigger: {trigger.instanceOf.name}</span>
+        {/* <button onClick={() => setShowDetail(!showDetail)}>Expand</button> */}
       </h3>
-      {showDetail && (
+      {/* {showDetail && (
         <table className={styles.executionDetailsTable}>
           <tbody>
             {groupedByExecutionId.map(([execution, executionEvents]) => {
@@ -52,7 +33,7 @@ export const TriggersSummary = ({
             })}
           </tbody>
         </table>
-      )}
+      )} */}
     </div>
   );
 };
