@@ -1,44 +1,28 @@
-import { FaCheck } from "react-icons/fa";
-import { ClassicSpinner } from "react-spinners-kit";
-import { BiError } from "react-icons/bi";
-
-import { TbHandStop } from "react-icons/tb";
-import { FaStop } from "react-icons/fa6";
-import { ExecutedEvent } from "@/types/executed-event";
-
+import { CircularProgress } from "@mui/material";
+import ErrorIcon from "@mui/icons-material/Error";
+import PanToolIcon from "@mui/icons-material/PanTool";
+import DoDisturbAltIcon from "@mui/icons-material/DoDisturbAlt";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 interface StatusIconProps {
-  events: ExecutedEvent[];
+  size?: number;
+  status: string;
 }
-export const StatusIcon = ({ events }: StatusIconProps) => {
-  const allEvents = events.flatMap((item) => {
-    return item;
-  });
-  const finished = Boolean(
-    allEvents.find((item) => item.status === "finished")
-  );
+export const StatusIcon = ({ status, size }: StatusIconProps) => {
+  const theSize = size ?? 20;
 
-  const stopped = Boolean(
-    events.find((item) => "continue" in item && item.continue === false)
-  );
-  const aborted = Boolean(allEvents.find((item) => item.status === "aborted"));
-
-  const failed = Boolean(allEvents.find((item) => item.status === "failed"));
-
-  if (failed) {
-    return <BiError />;
+  switch (status) {
+    case "failed":
+      return <ErrorIcon />;
+    case "aborted":
+      return <DoDisturbAltIcon />;
+    case "stopped":
+      return <PanToolIcon />;
+    case "started":
+      return <CircularProgress size={theSize} />;
+    case "finished":
+      return <CheckCircleOutlineIcon sx={{ color: "green" }} />;
+    default:
+      return <QuestionMarkIcon />;
   }
-
-  if (aborted) {
-    return <FaStop />;
-  }
-
-  if (stopped) {
-    return <TbHandStop />;
-  }
-
-  if (!finished) {
-    return <ClassicSpinner size={15} />;
-  }
-
-  return <FaCheck />;
 };

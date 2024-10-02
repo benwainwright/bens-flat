@@ -13,6 +13,8 @@ interface PaginationParams {
   pageSize: number;
 }
 
+type SortParams<T> = { -readonly [K in keyof T]: 1 | -1 };
+
 export interface Api<
   K extends keyof typeof schema,
   T extends SchemaTypes<typeof schema>[K],
@@ -23,7 +25,11 @@ export interface Api<
       id: string;
     })[]
   ) => Promise<T[]>;
-  getAll: (filter?: Partial<T>, pagination?: PaginationParams) => Promise<T[]>;
+  getAll: <R extends Partial<SchemaTypes<typeof schema>[K]>>(
+    filter?: Partial<T>,
+    pagination?: PaginationParams,
+    sort?: SortParams<R>
+  ) => Promise<T[]>;
 
   countAll: (filter?: Partial<T>) => Promise<number>;
 }
@@ -79,17 +85,21 @@ export const createApi = async <K extends keyof typeof schema>(
         })
       )) as Awaited<ReturnType<Api<K, TheType>["update"]>>;
     },
-    getAll: async (filter, pagination) => {
+    getAll: async (filter, pagination, sort) => {
       const theFilter = filter ?? {};
       const query = collection.find(theFilter);
 
-      const finalQuery = pagination
+      const queryWithPagination = pagination
         ? query
-            .skip((pagination.page - 1) * pagination.pageSize)
+            .skip(pagination.page * pagination.pageSize)
             .limit(pagination.pageSize)
         : query;
 
-      return (await finalQuery.toArray()) as Awaited<
+      const queryWithSort = sort
+        ? queryWithPagination.sort(sort)
+        : queryWithPagination;
+
+      return (await queryWithSort.toArray()) as Awaited<
         ReturnType<Api<K, TheType>["getAll"]>
       >;
     },

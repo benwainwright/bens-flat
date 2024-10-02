@@ -1,42 +1,43 @@
-import { useState } from "react";
 import { BlockExecutionSummary } from "../block-execution-summary/block-execution-summary";
-import styles from "./styles.module.css";
-import { StatusIcon } from "../status-icon/status-icon";
-import { ExecutedEvent } from "@/types/executed-event";
-import { schema, SchemaTypes } from "@/data/schema";
+import ExpandMore from "@mui/icons-material/ExpandMore";
 import { Execution, useExecutions } from "@/hooks/use-executions";
+import Box from "@mui/material/Box";
+import Chip from "@mui/material/Chip";
+import List from "@mui/material/List";
+import Accordion from "@mui/material/Accordion";
+import humanDate from "human-date";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
 
 interface TriggerSummaryProps {
   trigger: Execution;
   automation: string;
 }
 export const TriggerSummary = ({ trigger }: TriggerSummaryProps) => {
-  const [showDetail, setShowDetail] = useState(false);
-
   const { executions } = useExecutions({
     triggerId: trigger.id,
   });
 
   return (
-    <div className={styles.container}>
-      <h3 className={styles.header}>
-        <span>Trigger: {trigger.instanceOf.name}</span>
-        <button onClick={() => setShowDetail(!showDetail)}>Expand</button>
-      </h3>
-      {showDetail && (
-        <table className={styles.executionDetailsTable}>
-          <tbody>
-            {executions?.map((execution) => {
-              return (
-                <BlockExecutionSummary
-                  key={`block-execution-summary-${execution.id}`}
-                  execution={execution}
-                />
-              );
-            })}
-          </tbody>
-        </table>
-      )}
-    </div>
+    <Accordion>
+      <AccordionSummary expandIcon={<ExpandMore />}>
+        <Box gap="1rem" display="flex">
+          <Box>{trigger.instanceOf.name}</Box>
+          <Chip label={humanDate.relativeTime(trigger.created)} />
+        </Box>
+      </AccordionSummary>
+      <AccordionDetails>
+        <List>
+          {executions?.map((execution) => {
+            return (
+              <BlockExecutionSummary
+                key={`block-execution-summary-${execution.id}`}
+                execution={execution}
+              />
+            );
+          })}
+        </List>
+      </AccordionDetails>
+    </Accordion>
   );
 };

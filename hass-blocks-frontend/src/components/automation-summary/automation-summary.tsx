@@ -1,8 +1,11 @@
 "use client";
-import { useExecutions } from "@/hooks/use-executions";
+import { useAutomations } from "@/hooks/use-automations";
 import { TriggersSummaries } from "../triggers-summaries/triggers-summaries";
-import styles from "./styles.module.css";
+import ExpandMore from "@mui/icons-material/ExpandMore";
 import { useState } from "react";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
 
 interface AutomationSummaryProps {
   name: string;
@@ -10,25 +13,24 @@ interface AutomationSummaryProps {
   id: string;
 }
 
-export const AutomationSummary = ({
-  id,
-  name,
-  triggerCount,
-}: AutomationSummaryProps) => {
+export const AutomationSummary = ({ id, name }: AutomationSummaryProps) => {
   const [showDetail, setShowDetail] = useState(false);
+  const { automations } = useAutomations({
+    blockId: id,
+  });
+
+  if (automations?.length === 0) {
+    return null;
+  }
+
+  const automation = automations?.[0];
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h2>Automation: {name}</h2>
-        <p>Triggers: {triggerCount}</p>
-        <button onClick={() => setShowDetail(!showDetail)}>Expand</button>
-      </div>
-      <TriggersSummaries
-        automationId={id}
-        automation={name}
-        expand={showDetail}
-      />
-    </div>
+    <Accordion slotProps={{ heading: { component: "h4" } }}>
+      <AccordionSummary expandIcon={<ExpandMore />}>{name}</AccordionSummary>
+      <AccordionDetails>
+        <TriggersSummaries automationId={id} automation={name} />
+      </AccordionDetails>
+    </Accordion>
   );
 };

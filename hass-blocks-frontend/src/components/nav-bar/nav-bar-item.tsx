@@ -1,5 +1,4 @@
-import Link from "next/link";
-import styles from "./nav-bar.module.css";
+import Button from "@mui/material/Button";
 
 interface NavBarItemProps {
   href: string;
@@ -8,8 +7,8 @@ interface NavBarItemProps {
 
 export const NavBarItem = ({ href, label }: NavBarItemProps) => {
   return (
-    <li className={styles.item}>
-      <Link href={href}>{label}</Link>
-    </li>
+    <Button href={href} color="inherit">
+      {label}
+    </Button>
   );
 };

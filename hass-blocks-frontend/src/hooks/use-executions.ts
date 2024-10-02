@@ -6,15 +6,16 @@ const fetcher = async (url: string) => {
   return await response.json();
 };
 
-interface FilterParams {
+export interface FilterParams {
   type?: string;
   id?: string;
   triggerId?: string;
   status?: string;
   parentId?: string;
+  blockId?: string;
 }
 
-interface FilterParamsWithPagination extends FilterParams {
+export interface FilterParamsWithPagination extends FilterParams {
   page: number;
   pageSize: number;
 }
@@ -32,17 +33,23 @@ export type Execution = SchemaTypes<typeof schema>["executions"] & {
 };
 
 export const useExecutions = (
-  params: FilterParamsWithPagination | FilterParams
+  params?: FilterParamsWithPagination | FilterParams
 ) => {
-  const queryString = Object.entries(params)
-    .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
-    .join("&");
+  const queryString = params
+    ? Object.entries(params)
+        .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+        .join("&")
+    : ``;
 
   const query = queryString ? `?${queryString}` : "";
 
   const { data: executions, error } = useSWR<Execution[]>(
     `/api/executions${query}`,
-    fetcher
+    fetcher,
+    {
+      suspense: true,
+      refreshInterval: 250,
+    }
   );
   return { executions, error };
 };
