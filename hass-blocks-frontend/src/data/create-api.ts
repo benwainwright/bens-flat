@@ -13,6 +13,8 @@ interface PaginationParams {
   pageSize: number;
 }
 
+type Filter<T> = { [K in keyof T]: T[K] | { $ne: T[K] } };
+
 type SortParams<T> = { -readonly [K in keyof T]: 1 | -1 };
 
 export interface Api<
@@ -26,7 +28,7 @@ export interface Api<
     })[]
   ) => Promise<T[]>;
   getAll: <R extends Partial<SchemaTypes<typeof schema>[K]>>(
-    filter?: Partial<T>,
+    filter?: Record<string, unknown>,
     pagination?: PaginationParams,
     sort?: SortParams<R>
   ) => Promise<T[]>;

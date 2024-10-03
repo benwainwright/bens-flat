@@ -11,6 +11,7 @@ export interface FilterParams {
   id?: string;
   triggerId?: string;
   status?: string;
+  notType?: string;
   parentId?: string;
   blockId?: string;
 }

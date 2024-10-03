@@ -14,17 +14,6 @@ interface AutomationSummaryProps {
 }
 
 export const AutomationSummary = ({ id, name }: AutomationSummaryProps) => {
-  const [showDetail, setShowDetail] = useState(false);
-  const { automations } = useAutomations({
-    blockId: id,
-  });
-
-  if (automations?.length === 0) {
-    return null;
-  }
-
-  const automation = automations?.[0];
-
   return (
     <Accordion slotProps={{ heading: { component: "h4" } }}>
       <AccordionSummary expandIcon={<ExpandMore />}>{name}</AccordionSummary>

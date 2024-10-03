@@ -8,8 +8,9 @@ export const NavBar = () => {
     <AppBar position="sticky">
       <Toolbar>
         <NavBarItem href="/" label="Home" />
-        <NavBarItem href="/log" label="Log" />
         <NavBarItem href="/automations" label="Automations" />
+        <NavBarItem href="/log" label="Log" />
+        <NavBarItem href="/edit" label="Edit" />
       </Toolbar>
     </AppBar>
   );

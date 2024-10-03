@@ -15,9 +15,11 @@ export const TriggersSummaries = ({
 }: TriggerSummarriesProps) => {
   const { triggers } = useTriggers({
     parentId: automationId,
-    page: 1,
+    page: 0,
     pageSize: 5,
   });
+
+  console.log("triggers", triggers);
 
   return triggers?.map((trigger) => (
     <TriggerSummary

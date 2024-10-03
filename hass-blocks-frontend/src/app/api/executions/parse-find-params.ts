@@ -14,6 +14,9 @@ export const parseFindParams = (request: NextRequest) => {
   const type = queryString.get("type");
   const withType = type ? { type } : {};
 
+  const notType = queryString.get("notType");
+  const withNotType = notType ? { type: { $ne: notType } } : {};
+
   const id = queryString.get("id");
   const withId = id ? { id } : {};
 
@@ -38,6 +41,7 @@ export const parseFindParams = (request: NextRequest) => {
     pagination,
     filter: {
       ...withType,
+      ...withNotType,
       ...withId,
       ...withTriggerId,
       ...withStatus,

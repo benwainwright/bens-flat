@@ -1,6 +1,8 @@
 #!/usr/bin/with-contenv bashio
 
-mongod --bind_ip 0.0.0.0 --fork --logpath /var/log/mongodb/mongod.log
+mkdir -p /data/db
+
+mongod --fork --logpath /var/log/mongodb/mongod.log
 
 if [ "${NODE_ENV:-development}" = "production" ]; then
     yarn get-ingress

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import CssBaseline from "@mui/material/CssBaseline";
 import { PageContainer } from "@toolpad/core/PageContainer";
+import { AppProvider } from "@toolpad/core/nextjs";
 
 import "./globals.css";
 import { NavBar } from "@/components/nav-bar/nav-bar";
@@ -21,7 +22,6 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 
 const RootLayout = ({
@@ -33,10 +33,12 @@ const RootLayout = ({
     <html lang="en">
       <CssBaseline />
       <body>
-        <NavBar />
-        <PageContainer>
-          <Paper sx={{ padding: "1rem", width: "100%" }}>{children}</Paper>
-        </PageContainer>
+        <AppProvider>
+          <NavBar />
+          <PageContainer>
+            <Paper sx={{ padding: "1rem", width: "100%" }}>{children}</Paper>
+          </PageContainer>
+        </AppProvider>
       </body>
     </html>
   );

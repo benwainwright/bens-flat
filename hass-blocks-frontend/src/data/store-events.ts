@@ -17,15 +17,24 @@ export const recordEvents = async (socket: Socket, database: DatabaseApi) => {
       status: event.status,
     });
 
-    console.log("event", event);
+    const id =
+      event.type === "trigger"
+        ? event.triggerId
+        : "executeId" in event
+          ? event.executeId
+          : "";
+
+    const previousExecutionRecords = await database.executions.getAll({ id });
+
+    if (
+      previousExecutionRecords.length > 0 &&
+      previousExecutionRecords[0].status !== "started"
+    ) {
+      return;
+    }
 
     await database.executions.update({
-      id:
-        event.type === "trigger"
-          ? event.triggerId
-          : "executeId" in event
-            ? event.executeId
-            : "",
+      id,
       triggerId: event.triggerId,
       type: event.type,
       status: event.status,
