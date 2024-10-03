@@ -48,7 +48,6 @@ export const useExecutions = (
     `/api/executions${query}`,
     fetcher,
     {
-      suspense: true,
       refreshInterval: 250,
     }
   );

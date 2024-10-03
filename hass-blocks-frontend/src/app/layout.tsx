@@ -33,12 +33,14 @@ const RootLayout = ({
     <html lang="en">
       <CssBaseline />
       <body>
-        <AppProvider>
-          <NavBar />
-          <PageContainer>
-            <Paper sx={{ padding: "1rem", width: "100%" }}>{children}</Paper>
-          </PageContainer>
-        </AppProvider>
+      {!process.env.BUILD && (
+          <AppProvider>
+            <NavBar />
+            <PageContainer>
+              <Paper sx={{ padding: "1rem", width: "100%" }}>{children}</Paper>
+            </PageContainer>
+          </AppProvider>
+      )}
       </body>
     </html>
   );

@@ -24,7 +24,6 @@ export const useExecutionsCount = (
     fetcher,
     {
       keepPreviousData: params?.keepPreviousData,
-      suspense: true,
       refreshInterval: 250,
     }
   );
