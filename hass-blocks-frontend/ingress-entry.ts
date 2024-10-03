@@ -3,15 +3,16 @@ import { writeFileSync } from "node:fs";
 
 const outputIngressEntry = async () => {
   const {
-    data: { ingress_url: frontendIngressUrl },
+    data: { ingress_url: frontendIngressUrl, slug },
   } = await makeHassRequest(`/addons/self/info`);
 
   const config = JSON.stringify(
     {
+      slug,
       frontendIngressUrl,
     },
     null,
-    2
+    2,
   );
 
   writeFileSync("config-build", config);

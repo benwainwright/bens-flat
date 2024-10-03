@@ -9,5 +9,5 @@ if [ "${IN_ADDON:-false}" = "true" ]; then
     yarn build
 fi
 
-NODE_ENV=production yarn start
+NEXT_PUBLIC_IS_PROD_RUNTIME=true yarn start
 

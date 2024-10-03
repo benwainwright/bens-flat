@@ -34,7 +34,7 @@ const RootLayout = ({
     <html lang="en">
       <CssBaseline />
       <body>
-        {process.env.NODE_ENV === "production" && (
+        {process.env.NEXT_PUBLIC_IS_PROD_RUNTIME === "true" && (
           <Suspense>
             <AppProvider>
               <NavBar />
