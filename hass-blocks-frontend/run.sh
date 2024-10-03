@@ -4,10 +4,10 @@ mkdir -p /data/db
 
 mongod --fork --logpath /var/log/mongodb/mongod.log
 
-if [ "${NODE_ENV:-development}" = "production" ]; then
+if [ "${IN_ADDON:-false}" = "true" ]; then
     yarn get-ingress
     yarn build
 fi
 
-yarn start
+NODE_ENV=production yarn start
 

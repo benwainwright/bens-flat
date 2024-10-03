@@ -1,8 +1,6 @@
 "use client";
 
-import { useExecutions } from "@/hooks/use-executions";
-import { Suspense, useState } from "react";
-import { ClassicSpinner } from "react-spinners-kit";
+import { useState } from "react";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import TableContainer from "@mui/material/TableContainer";
@@ -14,7 +12,6 @@ import { useExecutionsCount } from "@/hooks/use-executions-count";
 
 export const EventLog = () => {
   const [page, setPage] = useState(0);
-  console.log(page);
   const [pageSize, setPageSize] = useState(10);
   const { count } = useExecutionsCount({ keepPreviousData: true });
 

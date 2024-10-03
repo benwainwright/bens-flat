@@ -1,16 +1,20 @@
 name: "Hass Blocks Frontend"
 description: "Visualisation of Hass Blocks automations"
-version: "1.0.35"
+version: "1.0.36"
 slug: "hass-blocks-frontend"
 homeassistant_api: true
 hassio_api: true
 ingress: true
 network_mode: host
 init: false
-environment:
-  NODE_ENV: production
 map:
   - config:rw
+
+ingress_port: 3000
+
+environment:
+  IN_ADDON: "true"
+
 arch:
   - aarch64
   - amd64

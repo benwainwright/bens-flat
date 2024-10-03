@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --hostname 0.0.0.0",
-    "build": "BUILD=true next build",
+    "build": "next build",
     "start": "vite-node ./src/server.ts",
     "get-ingress": "vite-node ./ingress-entry.ts",
     "lint": "next lint"

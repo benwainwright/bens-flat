@@ -23,6 +23,7 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import Paper from "@mui/material/Paper";
+import { Suspense } from "react";
 
 const RootLayout = ({
   children,
@@ -33,14 +34,18 @@ const RootLayout = ({
     <html lang="en">
       <CssBaseline />
       <body>
-      {!process.env.BUILD && (
-          <AppProvider>
-            <NavBar />
-            <PageContainer>
-              <Paper sx={{ padding: "1rem", width: "100%" }}>{children}</Paper>
-            </PageContainer>
-          </AppProvider>
-      )}
+        {process.env.NODE_ENV === "production" && (
+          <Suspense>
+            <AppProvider>
+              <NavBar />
+              <PageContainer>
+                <Paper sx={{ padding: "1rem", width: "100%" }}>
+                  {children}
+                </Paper>
+              </PageContainer>
+            </AppProvider>
+          </Suspense>
+        )}
       </body>
     </html>
   );

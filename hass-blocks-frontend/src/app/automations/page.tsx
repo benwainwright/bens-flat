@@ -1,6 +1,8 @@
 import { AutomationSummaries } from "@/components/automation-summaries/automation-summaries";
 import Typography from "@mui/material/Typography";
 
+export const dynamic = "force-dynamic"
+
 const Automation = async () => {
   return (
     <>
