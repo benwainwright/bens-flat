@@ -7,8 +7,6 @@ export const startNextServer = async () => {
   const host = "0.0.0.0";
   const dev = process.env.NEXT_PUBLIC_IS_PROD_RUNTIME !== "true";
 
-  console.log({ dev });
-
   const app = next({ dev });
 
   const handle = app.getRequestHandler();
