@@ -9,7 +9,7 @@ const fetcher = async (url: string) => {
 export const useExecutionsCount = (
   params?: (FilterParamsWithPagination | FilterParams) & {
     keepPreviousData?: boolean;
-  }
+  },
 ) => {
   const queryString = params
     ? Object.entries(params)
@@ -20,12 +20,12 @@ export const useExecutionsCount = (
   const query = queryString ? `?${queryString}` : "";
 
   const { data, error } = useSWR<{ count: number }>(
-    `/api/executions/count${query}`,
+    `api/executions/count${query}`,
     fetcher,
     {
       keepPreviousData: params?.keepPreviousData,
       refreshInterval: 250,
-    }
+    },
   );
   return { count: data?.count, error };
 };

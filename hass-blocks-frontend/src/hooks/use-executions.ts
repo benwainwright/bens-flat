@@ -34,7 +34,7 @@ export type Execution = SchemaTypes<typeof schema>["executions"] & {
 };
 
 export const useExecutions = (
-  params?: FilterParamsWithPagination | FilterParams
+  params?: FilterParamsWithPagination | FilterParams,
 ) => {
   const queryString = params
     ? Object.entries(params)
@@ -45,11 +45,11 @@ export const useExecutions = (
   const query = queryString ? `?${queryString}` : "";
 
   const { data: executions, error } = useSWR<Execution[]>(
-    `/api/executions${query}`,
+    `api/executions${query}`,
     fetcher,
     {
       refreshInterval: 250,
-    }
+    },
   );
   return { executions, error };
 };
