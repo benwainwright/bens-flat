@@ -7,7 +7,7 @@ const getConfig = () => {
 };
 
 const withBasePath =
-  process.env["NODE_ENV"] === "production"
+  process.env["IN_ADDON"] === "true"
     ? {
         assetPrefix: getConfig().frontendIngressUrl,
       }
