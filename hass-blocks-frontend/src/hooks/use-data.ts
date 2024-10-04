@@ -4,7 +4,7 @@ export const useData = <T>(collection: string) => {
   const key = `hass-blocks-${collection}`;
 
   const [data, setData] = useState<T[]>(
-    JSON.parse(localStorage.getItem(key) ?? "[]")
+    JSON.parse(localStorage.getItem(key) ?? "[]"),
   );
 
   const add = (value: T) => {

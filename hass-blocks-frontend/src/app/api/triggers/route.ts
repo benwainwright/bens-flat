@@ -8,11 +8,13 @@ export const GET = async (request: NextRequest, response: NextResponse) => {
 
   const database = await initialise();
 
-  console.log(filter);
-
-  const executions = await database.executions.getAll(filter, pagination, {
-    created: -1,
-  });
+  const executions = await database.executions.getAll(
+    { ...filter, type: "trigger", "output.continue": true },
+    pagination,
+    {
+      created: -1,
+    },
+  );
 
   const executionsWithBlocks = await hydrateExecutions(executions, database);
 

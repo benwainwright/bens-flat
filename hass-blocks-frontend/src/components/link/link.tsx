@@ -1,15 +1,16 @@
-"use client"
+"use client";
 
 import NextLink from "next/link";
+import MuiLink from "@mui/material/Link";
 
 import { ReactNode } from "react";
 
 interface LinkProps {
   href: string;
-  title: string;
+  title?: string;
   children: ReactNode;
 }
 
 export const Link = (props: LinkProps) => {
-  return <NextLink {...props} href={href} />;
+  return <MuiLink {...props} component={NextLink} />;
 };

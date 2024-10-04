@@ -1,7 +1,7 @@
 import { JSONSchema7 } from "json-schema";
 
 interface BsonSchema extends Omit<Readonly<JSONSchema7>, "type"> {
-  readonly bsonType: string;
+  readonly bsonType?: string;
   readonly properties?: Record<string, BsonSchema>;
   readonly required?: string[];
 }
@@ -30,22 +30,26 @@ type TypesFromBsonSchema<T extends BsonSchema> = T extends {
   bsonType: "string";
 }
   ? string
-  : T extends { bsonType: "date" }
-    ? Date
-    : T extends {
-          bsonType: "object";
-          properties: infer P;
-          required?: infer R extends ReadonlyArray<string>;
-          description?: string;
-        }
-      ? P extends Record<string, BsonSchema>
-        ? {
-            [K in keyof P]: K extends R[number]
-              ? TypesFromBsonSchema<P[K]>
-              : TypesFromBsonSchema<P[K]> | undefined;
-          }
-        : never
-      : never;
+  : T extends { bsonType: "bool" }
+    ? boolean
+    : T extends { bsonType: "date" }
+      ? Date
+      : T extends { bsonType: "any" }
+        ? any
+        : T extends {
+              bsonType: "object";
+              properties: infer P;
+              required?: infer R extends ReadonlyArray<string>;
+              description?: string;
+            }
+          ? P extends Record<string, BsonSchema>
+            ? {
+                [K in keyof P]: K extends R[number]
+                  ? TypesFromBsonSchema<P[K]>
+                  : TypesFromBsonSchema<P[K]> | undefined;
+              }
+            : never
+          : never;
 
 export type SchemaTypes<S extends typeof schema> = {
   [K in keyof S]: S[K] extends BsonSchema ? TypesFromBsonSchema<S[K]> : never;
@@ -70,6 +74,14 @@ export const schema = {
       type: {
         bsonType: "string",
         description: "The type of block",
+      },
+      created: {
+        bsonType: "date",
+        description: "The time that the block was created",
+      },
+      updated: {
+        bsonType: "date",
+        description: "The time that the action was updated",
       },
     },
   },
@@ -104,6 +116,29 @@ export const schema = {
       created: {
         bsonType: "date",
         description: "The time that the action was created",
+      },
+      output: {
+        bsonType: "object",
+        description: "Block output on successful execution",
+        required: ["continue"],
+        properties: {
+          continue: {
+            bsonType: "bool",
+            description: "Whether execution should continue",
+          },
+          outputType: {
+            bsonType: "string",
+            description:
+              "Whether the block was a standard or conditional block",
+          },
+          conditionResult: {
+            bsonType: "bool",
+            description: "The outcome of the condtion execution",
+          },
+          output: {
+            description: "The output of the block",
+          },
+        },
       },
       updated: {
         bsonType: "date",

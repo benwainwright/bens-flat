@@ -15,6 +15,9 @@ const withBasePath =
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    typedRoutes: true,
+  },
   distDir: "dist",
   eslint: {
     ignoreDuringBuilds: true, // Disables ESLint checks during builds

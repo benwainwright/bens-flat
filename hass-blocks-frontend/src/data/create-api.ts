@@ -13,7 +13,13 @@ interface PaginationParams {
   pageSize: number;
 }
 
-type Filter<T> = { [K in keyof T]: T[K] | { $ne: T[K] } };
+type AddMongoOperators<T> = {
+  [K in keyof T]:
+    | T[K]
+    | { $ne: T[K] }
+    | { $elemMatch: T[K] | { $eq: T[K] } }
+    | Record<string, unknown>;
+};
 
 type SortParams<T> = { -readonly [K in keyof T]: 1 | -1 };
 
@@ -23,22 +29,23 @@ export interface Api<
 > {
   add: (...data: Omit<T, "id" | "updated" | "created">[]) => Promise<void>;
   update: (
-    ...data: (Partial<Omit<T, "updated" | "created">> & {
+    ...data: (Partial<Omit<AddMongoOperators<T>, "updated">> & {
       id: string;
+      updated: Date;
     })[]
   ) => Promise<T[]>;
   getAll: <R extends Partial<SchemaTypes<typeof schema>[K]>>(
     filter?: Record<string, unknown>,
     pagination?: PaginationParams,
-    sort?: SortParams<R>
+    sort?: SortParams<R>,
   ) => Promise<T[]>;
 
-  countAll: (filter?: Partial<T>) => Promise<number>;
+  countAll: (filter?: Partial<AddMongoOperators<T>>) => Promise<number>;
 }
 
 export const createApi = async <K extends keyof typeof schema>(
   database: Db,
-  collectionName: K
+  collectionName: K,
 ): Promise<Api<K, SchemaTypes<typeof schema>[K]>> => {
   type TheType = SchemaTypes<typeof schema>[K];
 
@@ -52,10 +59,11 @@ export const createApi = async <K extends keyof typeof schema>(
     update: async (...data) => {
       return (await Promise.all(
         data.map(async (item) => {
+          const now = item.updated;
           const params = {
-            filter: { id: item.id },
+            filter: { id: item.id, updated: { $lt: now } },
             update: {
-              $set: { ...item, updated: new Date(), created: new Date() },
+              $set: { ...item, updated: now, created: now },
             },
           };
           try {
@@ -75,20 +83,21 @@ export const createApi = async <K extends keyof typeof schema>(
               if (error.code !== MONGO_DUPLICATE_KEY) {
                 writeFileSync(
                   `failed-insert/${v4()}.json`,
-                  JSON.stringify(params, null, 2)
+                  JSON.stringify(params, null, 2),
                 );
               }
 
               console.log(
-                `Error: [${error.code}] ${error.message} ${error.errInfo?.detals}`
+                `Error: [${error.code}] ${error.message} ${error.errInfo?.detals}`,
               );
             }
           }
-        })
+        }),
       )) as Awaited<ReturnType<Api<K, TheType>["update"]>>;
     },
     getAll: async (filter, pagination, sort) => {
       const theFilter = filter ?? {};
+      console.log(theFilter);
       const query = collection.find(theFilter);
 
       const queryWithPagination = pagination

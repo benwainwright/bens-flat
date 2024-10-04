@@ -1,10 +1,10 @@
 import MaterialButton from "@mui/material/Button";
 import { ReactNode } from "react";
-import Link from "next/link"
+import { Link } from "../link/link";
 
 interface ButtonProps {
   href: string;
-  color: "primary" | "secondary" | "inherit";
+  color?: "primary" | "secondary" | "inherit";
   children: ReactNode;
 }
 

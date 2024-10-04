@@ -5,7 +5,7 @@ export type HasKey<T, K extends PropertyKey> =
 
 const hasKey = <T extends object, K extends PropertyKey>(
   obj: T,
-  key: K
+  key: K,
 ): obj is HasKey<T, K> => {
   return key in obj;
 };

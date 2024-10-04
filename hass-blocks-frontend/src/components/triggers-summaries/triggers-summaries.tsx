@@ -19,8 +19,6 @@ export const TriggersSummaries = ({
     pageSize: 5,
   });
 
-  console.log("triggers", triggers);
-
   return triggers?.map((trigger) => (
     <TriggerSummary
       automation={automation}

@@ -10,7 +10,7 @@ let socket: Socket | undefined;
 
 export const useSocket = () => {
   const [connectionStatus, setConnectionStatus] = useState<ConnectionStatus>(
-    ConnectionStatus.NotConnected
+    ConnectionStatus.NotConnected,
   );
 
   const [errors, setErrors] = useState<Error[]>([]);
@@ -18,7 +18,7 @@ export const useSocket = () => {
   useEffect(() => {
     if (!socket) {
       socket = io(
-        `ws://${window.location.hostname}:${process.env.NEXT_PUBLIC_LEGO_PORT}`
+        `ws://${window.location.hostname}:${process.env.NEXT_PUBLIC_LEGO_PORT}`,
       );
       return;
     }
@@ -27,7 +27,7 @@ export const useSocket = () => {
       setConnectionStatus(
         socket?.connected
           ? ConnectionStatus.Connected
-          : ConnectionStatus.NotConnected
+          : ConnectionStatus.NotConnected,
       );
     });
 

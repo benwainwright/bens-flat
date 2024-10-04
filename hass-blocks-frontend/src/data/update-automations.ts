@@ -27,6 +27,7 @@ export const updateAutomations = async (
               ...newAutomation,
               status: "created",
               type: "automation",
+              updated: new Date(),
             };
           });
 

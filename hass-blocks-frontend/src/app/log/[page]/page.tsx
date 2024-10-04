@@ -2,9 +2,10 @@ import { EventLog } from "@/components/event-log/event-log";
 
 interface LogParams {
   searchParams?: { triggerId?: string; pageSize?: string };
+  params: { page: string };
 }
 
-const Log = ({ searchParams }: LogParams) => {
+const Log = ({ searchParams, params }: LogParams) => {
   return (
     <EventLog
       triggerId={searchParams?.triggerId}
@@ -13,6 +14,7 @@ const Log = ({ searchParams }: LogParams) => {
           ? parseInt(searchParams?.pageSize, 10)
           : undefined
       }
+      page={parseInt(params.page, 10)}
     />
   );
 };

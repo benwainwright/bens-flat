@@ -1,6 +1,6 @@
 import { initialise } from "@/data/initialise";
+import { parseFindParams } from "@/utils/parse-find-params";
 import { NextRequest, NextResponse } from "next/server";
-import { parseFindParams } from "../parse-find-params";
 
 export const GET = async (request: NextRequest, response: NextResponse) => {
   const { filter } = parseFindParams(request);

@@ -2421,10 +2421,10 @@ hass-lego@^1.10.0:
     vitest-when "^0.4.1"
     ws "^8.18.0"
 
-hass-lego@^1.14.1:
-  version "1.14.1"
-  resolved "https://registry.npmjs.org/hass-lego/-/hass-lego-1.14.1.tgz#18e7bde0a2ee42564b01494b1b906e441e166e9c"
-  integrity sha512-kTU2lF+LyRrCNTME6GJI7m/qhvr6HtRwyYfEmII8/rLn8nnhCl24y/4zLthSyNNyDbS3nR5edKPOvU6DTzW8sA==
+hass-lego@^1.15.0:
+  version "1.15.0"
+  resolved "https://registry.npmjs.org/hass-lego/-/hass-lego-1.15.0.tgz#cce359e1d1b756d22168495746e8d5de910624fe"
+  integrity sha512-C3h4SIgAxNIIf7ayWNcxPGN85vsFilEIjyzRJaHhG1CB76bELG4VJdHeUBi/o1QY3vqJye8OY23g1avGc73hzw==
   dependencies:
     "@types/ws" "^8.5.12"
     hass-lego "^1.10.0"
