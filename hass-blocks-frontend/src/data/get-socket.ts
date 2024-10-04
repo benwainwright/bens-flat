@@ -15,9 +15,7 @@ const getHassLegoSlug = async () => {
 
 export const getHassBlocksSocket = async () => {
   const HASS_BLOCKS_HOST =
-    process.env.IN_ADDON === "true"
-      ? `addons_${await getHassLegoSlug()}`
-      : "hass-blocks";
+    process.env.IN_ADDON === "true" ? await getHassLegoSlug() : "hass-blocks";
 
   return new Promise<Socket>((accept, reject) => {
     const url = `ws://${HASS_BLOCKS_HOST}:3001`;
