@@ -5,7 +5,7 @@ import next from "next";
 export const startNextServer = async () => {
   const port = 3000;
   const host = "0.0.0.0";
-  const dev = process.env.NEXT_PUBLIC_IS_PROD_RUNTIME !== "true";
+  const dev = process.env.IN_ADDON !== "true";
 
   const app = next({ dev });
 
@@ -21,7 +21,7 @@ export const startNextServer = async () => {
 
   console.log(
     `> Server listening at http://${host}:${port} as ${
-      dev ? "development" : process.env.NODE_ENV
+      dev ? "development" : "production"
     }`,
   );
 };
