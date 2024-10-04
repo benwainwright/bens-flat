@@ -1,4 +1,4 @@
-import { makeHassRequest } from "./src/utils/make-hass-request";
+import { makeHassRequest } from "./src/utils/make-hass-request/make-hass-request";
 import { writeFileSync } from "node:fs";
 
 const outputIngressEntry = async () => {

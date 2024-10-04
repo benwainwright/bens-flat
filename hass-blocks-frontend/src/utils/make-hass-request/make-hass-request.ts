@@ -1,11 +1,12 @@
 import { getConfig } from "homeassistant-typescript";
+import { HassRequestApiMap } from "./hass-request-api-map";
 
-export const makeHassRequest = async (path: string) => {
+export const makeHassRequest = async <P extends keyof HassRequestApiMap>(
+  path: P,
+) => {
   const config = getConfig();
 
   const finalUrl = `http://${config.host}:${config.port}${path}`;
-
-  console.log(finalUrl);
 
   const response = await fetch(finalUrl, {
     method: "GET",
@@ -20,7 +21,5 @@ export const makeHassRequest = async (path: string) => {
     throw new Error(`Failed to fetch data: ${result}, ${response.status}`);
   }
 
-  const result = await response.json();
-
-  return result;
+  return (await response.json()) as HassRequestApiMap[P];
 };
