@@ -5,7 +5,9 @@ import next from "next";
 export const startNextServer = async () => {
   const port = 3000;
   const host = "0.0.0.0";
-  const dev = process.env.NEXT_PUBLIC_IS_PROD_RUNTIME !== "production";
+  const dev = process.env.NEXT_PUBLIC_IS_PROD_RUNTIME !== "true";
+
+  console.log({ dev });
 
   const app = next({ dev });
 
