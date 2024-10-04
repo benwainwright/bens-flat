@@ -1,11 +1,10 @@
 name: "Hass Blocks Frontend"
 description: "Visualisation of Hass Blocks automations"
-version: "1.0.39"
+version: "1.0.41"
 slug: "hass-blocks-frontend"
 homeassistant_api: true
 hassio_api: true
 ingress: true
-network_mode: host
 init: false
 map:
   - config:rw
