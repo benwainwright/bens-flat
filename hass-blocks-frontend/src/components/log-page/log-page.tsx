@@ -1,6 +1,6 @@
 import { useExecutions } from "@/hooks/use-executions";
 import { DataGrid, GridColDef, GridPaginationModel } from "@mui/x-data-grid";
-import humanDate from "human-date"
+import humanDate from "human-date";
 import { StatusIcon } from "../status-icon/status-icon";
 
 interface LogPageProps {
@@ -24,53 +24,52 @@ export const LogPage = ({
     {
       field: "created",
       headerName: "Created",
-      flex: 0.5
+      flex: 0.5,
     },
     {
       field: "updated",
       headerName: "Updated",
-      flex: 0.5
+      flex: 0.5,
     },
     {
       field: "type",
       headerName: "Type",
-      flex: 0.5 
+      flex: 0.5,
     },
     {
       field: "status",
       headerName: "Status",
       renderCell: (props) => <StatusIcon status={props.value} />,
-      flex: 0.5
+      flex: 0.5,
     },
     {
       field: "name",
       headerName: "Name",
-      flex: 1
+      flex: 1,
     },
     {
       field: "triggerId",
       headerName: "Trigger ID",
-      flex: 1
+      flex: 1,
     },
     {
       field: "continue",
       headerName: "Continue",
       flex: 0.5,
-      type: "boolean"
+      type: "boolean",
     },
     {
       field: "output",
       headerName: "Output",
-      flex: 0.5
+      flex: 0.5,
     },
     {
       field: "conditionResult",
       type: "boolean",
       headerName: "Result",
-      flex: 0.5
-    }
+      flex: 0.5,
+    },
   ];
-
 
   const rows = executions?.map((execution) => ({
     ...execution,
@@ -79,7 +78,7 @@ export const LogPage = ({
     output: execution.output?.output,
     result: execution.output?.conditionResult,
     created: humanDate.relativeTime(execution.created),
-    updated: humanDate.relativeTime(execution.updated)
+    updated: humanDate.relativeTime(execution.updated),
   }));
 
   return (

@@ -14,8 +14,8 @@ export const BlockExecutionSummary = ({
 }: BlockExecutionSummaryProps) => {
   return (
     <ListItem>
-      <ListItemAvatar sx={{ minWidth: "40px"}}>
-          <StatusIcon status={execution.status} />
+      <ListItemAvatar sx={{ minWidth: "40px" }}>
+        <StatusIcon status={execution.status} />
       </ListItemAvatar>
       <ListItemText
         primary={execution.instanceOf.name}

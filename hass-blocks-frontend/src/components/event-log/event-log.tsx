@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import {  GridPaginationModel } from "@mui/x-data-grid";
-import Container from "@mui/material/Container"
+import { GridPaginationModel } from "@mui/x-data-grid";
+import Container from "@mui/material/Container";
 
 import { Typography } from "@mui/material";
 import { LogPage } from "../log-page/log-page";
@@ -33,7 +33,7 @@ export const EventLog = ({
       <Typography variant="h4" component="h2" gutterBottom>
         Log
       </Typography>
-      <Container sx={{padding: "1rem"}}>
+      <Container sx={{ padding: "1rem" }}>
         <LogPage
           page={page}
           pageSize={pageSize}
