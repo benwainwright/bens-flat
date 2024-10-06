@@ -1,85 +1,36 @@
-import { useExecutions } from "@/hooks/use-executions";
+import { useDataFetcher } from "@/hooks/use-data-fetcher";
 import { DataGrid, GridColDef, GridPaginationModel } from "@mui/x-data-grid";
-import humanDate from "human-date";
-import { StatusIcon } from "../status-icon/status-icon";
+import { Route } from "next";
 
-interface LogPageProps {
+interface LogPageProps<T> {
   page: number;
   pageSize: number;
   totalRowCount: number;
   triggerId?: string;
+  api: Route;
   onPaginationModelChange: (model: GridPaginationModel) => void;
+  cols: GridColDef[];
+  pageMapper: (item: T) => Record<string, unknown>;
 }
 
-export const LogPage = ({
+export const LogPage = <T,>({
   onPaginationModelChange,
   totalRowCount,
   page,
   pageSize,
   triggerId,
-}: LogPageProps) => {
+  cols,
+  api,
+  pageMapper,
+}: LogPageProps<T>) => {
   const withTriggerId = triggerId ? { triggerId } : {};
-  const { executions } = useExecutions({ page, pageSize, ...withTriggerId });
-  const cols: GridColDef[] = [
-    {
-      field: "created",
-      headerName: "Created",
-      flex: 0.5,
-    },
-    {
-      field: "updated",
-      headerName: "Updated",
-      flex: 0.5,
-    },
-    {
-      field: "type",
-      headerName: "Type",
-      flex: 0.5,
-    },
-    {
-      field: "status",
-      headerName: "Status",
-      renderCell: (props) => <StatusIcon status={props.value} />,
-      flex: 0.5,
-    },
-    {
-      field: "name",
-      headerName: "Name",
-      flex: 1,
-    },
-    {
-      field: "triggerId",
-      headerName: "Trigger ID",
-      flex: 1,
-    },
-    {
-      field: "continue",
-      headerName: "Continue",
-      flex: 0.5,
-      type: "boolean",
-    },
-    {
-      field: "output",
-      headerName: "Output",
-      flex: 0.5,
-    },
-    {
-      field: "conditionResult",
-      type: "boolean",
-      headerName: "Result",
-      flex: 0.5,
-    },
-  ];
+  const { data } = useDataFetcher<T[]>(api, {
+    page,
+    pageSize,
+    ...withTriggerId,
+  });
 
-  const rows = executions?.map((execution) => ({
-    ...execution,
-    name: execution.instanceOf.name,
-    continue: execution.output?.continue ?? "",
-    output: execution.output?.output,
-    result: execution.output?.conditionResult,
-    created: humanDate.relativeTime(execution.created),
-    updated: humanDate.relativeTime(execution.updated),
-  }));
+  const rows = data?.map(pageMapper);
 
   return (
     <DataGrid

@@ -23,7 +23,6 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import Paper from "@mui/material/Paper";
-import { Suspense } from "react";
 
 const RootLayout = ({
   children,
@@ -35,7 +34,6 @@ const RootLayout = ({
       <CssBaseline />
       <body>
         {process.env.NEXT_PUBLIC_IS_PROD_RUNTIME === "true" && (
-          <Suspense>
             <AppProvider>
               <NavBar />
               <PageContainer>
@@ -44,7 +42,6 @@ const RootLayout = ({
                 </Paper>
               </PageContainer>
             </AppProvider>
-          </Suspense>
         )}
       </body>
     </html>

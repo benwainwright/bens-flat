@@ -23,7 +23,7 @@
     "@types/node": "^22.5.4",
     "docker-compose": "^0.24.8",
     "dotenv": "^16.4.5",
-    "hass-lego": "^1.15.0",
+    "hass-lego": "^1.17.0",
     "home-assistant-js-websocket": "^9.4.0",
     "homeassistant-typescript": "^1.3.0",
     "homeassistant-ws": "^0.2.3",

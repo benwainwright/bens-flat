@@ -30,7 +30,7 @@ export const parseFindParams = (request: NextRequest) => {
 
   const blockId = queryString.get("blockId");
   const withBlockId = blockId
-    ? { parent: { id: blockId, collection: "blocks" } }
+    ? { instanceOf: { id: blockId, collection: "blocks" } }
     : {};
 
   const withParent = parent

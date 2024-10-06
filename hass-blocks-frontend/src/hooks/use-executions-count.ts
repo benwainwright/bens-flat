@@ -1,5 +1,8 @@
-import useSWR from "swr";
-import { FilterParams, FilterParamsWithPagination } from "./use-executions";
+import {
+  FilterParams,
+  FilterParamsWithPagination,
+  useDataFetcher,
+} from "./use-data-fetcher";
 
 const fetcher = async (url: string) => {
   const response = await fetch(url);
@@ -11,21 +14,9 @@ export const useExecutionsCount = (
     keepPreviousData?: boolean;
   },
 ) => {
-  const queryString = params
-    ? Object.entries(params)
-        .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
-        .join("&")
-    : ``;
-
-  const query = queryString ? `?${queryString}` : "";
-
-  const { data, error } = useSWR<{ count: number }>(
-    `api/executions/count${query}`,
-    fetcher,
-    {
-      keepPreviousData: params?.keepPreviousData,
-      refreshInterval: 250,
-    },
+  const { data, error } = useDataFetcher<{ count: number }>(
+    "api/executions/count",
+    params,
   );
   return { count: data?.count, error };
 };

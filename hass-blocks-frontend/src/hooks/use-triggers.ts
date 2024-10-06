@@ -1,5 +1,6 @@
 import { schema, SchemaTypes } from "@/data/schema";
 import useSWR from "swr";
+import { useDataFetcher } from "./use-data-fetcher";
 
 const fetcher = async (url: string) => {
   const response = await fetch(url);
@@ -34,22 +35,8 @@ export type Execution = SchemaTypes<typeof schema>["executions"] & {
 };
 
 export const useTriggers = (
-  params?: FilterParamsWithPagination | FilterParams,
+  params?: (FilterParamsWithPagination | FilterParams) & { suspense?: boolean },
 ) => {
-  const queryString = params
-    ? Object.entries(params)
-        .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
-        .join("&")
-    : ``;
-
-  const query = queryString ? `?${queryString}` : "";
-
-  const { data: triggers, error } = useSWR<Execution[]>(
-    `api/triggers${query}`,
-    fetcher,
-    {
-      refreshInterval: 250,
-    },
-  );
-  return { triggers, error };
+  const { data, error } = useDataFetcher<Execution[]>("api/triggers", params);
+  return { triggers: data, error };
 };

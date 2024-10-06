@@ -1,32 +1,10 @@
 import { schema, SchemaTypes } from "@/data/schema";
-import useSWR from "swr";
-
-const fetcher = async (url: string) => {
-  const response = await fetch(url);
-  return await response.json();
-};
-
-export interface FilterParams {
-  type?: string;
-  id?: string;
-  triggerId?: string;
-  status?: string;
-  notType?: string;
-  parentId?: string;
-  blockId?: string;
-}
-
-export interface FilterParamsWithPagination extends FilterParams {
-  page: number;
-  pageSize: number;
-}
-
-interface SerialisedBlock {
-  id: string;
-  status: string;
-  name: string;
-  type: string;
-}
+import {
+  FilterParams,
+  FilterParamsWithPagination,
+  SerialisedBlock,
+  useDataFetcher,
+} from "./use-data-fetcher";
 
 export type Execution = SchemaTypes<typeof schema>["executions"] & {
   parent?: SerialisedBlock;
@@ -34,22 +12,11 @@ export type Execution = SchemaTypes<typeof schema>["executions"] & {
 };
 
 export const useExecutions = (
-  params?: FilterParamsWithPagination | FilterParams,
+  params?: (FilterParamsWithPagination | FilterParams) & { suspense?: boolean },
 ) => {
-  const queryString = params
-    ? Object.entries(params)
-        .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
-        .join("&")
-    : ``;
-
-  const query = queryString ? `?${queryString}` : "";
-
-  const { data: executions, error } = useSWR<Execution[]>(
-    `api/executions${query}`,
-    fetcher,
-    {
-      refreshInterval: 250,
-    },
+  const { data: executions, error } = useDataFetcher<Execution[]>(
+    "api/executions",
+    params,
   );
   return { executions, error };
 };

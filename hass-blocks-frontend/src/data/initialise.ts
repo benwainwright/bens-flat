@@ -27,6 +27,7 @@ export const initialise = async () => {
   const api: DatabaseApi = {
     blocks: await createApi(database, "blocks"),
     executions: await createApi(database, "executions"),
+    events: await createApi(database, "events"),
   };
 
   return api;

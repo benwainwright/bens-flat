@@ -1,0 +1,17 @@
+2024-10-06T13:38:57.518+0000 I CONTROL  [main] Automatically disabling TLS 1.0, to force-enable TLS 1.0 specify --sslDisabledProtocols 'none'
+2024-10-06T13:38:57.520+0000 I CONTROL  [initandlisten] MongoDB starting : pid=87 port=27017 dbpath=/data/db 64-bit host=8bad7efc2f23
+2024-10-06T13:38:57.520+0000 I CONTROL  [initandlisten] db version v4.0.5
+2024-10-06T13:38:57.520+0000 I CONTROL  [initandlisten] git version: 3739429dd92b92d1b0ab120911a23d50bf03c412
+2024-10-06T13:38:57.521+0000 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.1.1k  25 Mar 2021
+2024-10-06T13:38:57.521+0000 I CONTROL  [initandlisten] allocator: system
+2024-10-06T13:38:57.521+0000 I CONTROL  [initandlisten] modules: none
+2024-10-06T13:38:57.521+0000 I CONTROL  [initandlisten] build environment:
+2024-10-06T13:38:57.521+0000 I CONTROL  [initandlisten]     distarch: x86_64
+2024-10-06T13:38:57.521+0000 I CONTROL  [initandlisten]     target_arch: x86_64
+2024-10-06T13:38:57.521+0000 I CONTROL  [initandlisten] options: { net: { bindIp: "0.0.0.0" }, processManagement: { fork: true }, systemLog: { destination: "file", path: "/var/log/mongodb/mongod.log" } }
+2024-10-06T13:38:57.524+0000 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=3455M,session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),statistics_log=(wait=0),verbose=(recovery_progress),
+2024-10-06T13:38:58.795+0000 I CONTROL  [signalProcessingThread] got signal 15 (Terminated), will terminate after current cmd ends
+2024-10-06T13:38:58.795+0000 I NETWORK  [signalProcessingThread] shutdown: going to close listening sockets...
+2024-10-06T13:38:58.795+0000 I NETWORK  [signalProcessingThread] removing socket file: /tmp/mongodb-27017.sock
+2024-10-06T13:38:58.795+0000 I CONTROL  [signalProcessingThread] now exiting
+2024-10-06T13:38:58.796+0000 I CONTROL  [signalProcessingThread] shutting down with code:0

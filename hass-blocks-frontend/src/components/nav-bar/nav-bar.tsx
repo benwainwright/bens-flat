@@ -8,7 +8,8 @@ export const NavBar = () => {
       <Toolbar>
         <NavBarItem href="./" label="Home" />
         <NavBarItem href="./automations" label="Automations" />
-        <NavBarItem href="./log" label="Log" />
+        <NavBarItem href="./executions" label="Executions" />
+        <NavBarItem href="./events" label="Events" />
       </Toolbar>
     </AppBar>
   );

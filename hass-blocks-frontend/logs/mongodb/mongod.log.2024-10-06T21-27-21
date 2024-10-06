@@ -1,0 +1,38 @@
+2024-10-06T21:27:10.239+0000 I CONTROL  [main] Automatically disabling TLS 1.0, to force-enable TLS 1.0 specify --sslDisabledProtocols 'none'
+2024-10-06T21:27:10.242+0000 I CONTROL  [initandlisten] MongoDB starting : pid=87 port=27017 dbpath=/data/db 64-bit host=7a3ac58d5a43
+2024-10-06T21:27:10.242+0000 I CONTROL  [initandlisten] db version v4.0.5
+2024-10-06T21:27:10.242+0000 I CONTROL  [initandlisten] git version: 3739429dd92b92d1b0ab120911a23d50bf03c412
+2024-10-06T21:27:10.242+0000 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.1.1k  25 Mar 2021
+2024-10-06T21:27:10.243+0000 I CONTROL  [initandlisten] allocator: system
+2024-10-06T21:27:10.243+0000 I CONTROL  [initandlisten] modules: none
+2024-10-06T21:27:10.243+0000 I CONTROL  [initandlisten] build environment:
+2024-10-06T21:27:10.243+0000 I CONTROL  [initandlisten]     distarch: x86_64
+2024-10-06T21:27:10.244+0000 I CONTROL  [initandlisten]     target_arch: x86_64
+2024-10-06T21:27:10.244+0000 I CONTROL  [initandlisten] options: { net: { bindIp: "0.0.0.0" }, processManagement: { fork: true }, systemLog: { destination: "file", path: "/var/log/mongodb/mongod.log" } }
+2024-10-06T21:27:10.246+0000 I STORAGE  [initandlisten] Detected data files in /data/db created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+2024-10-06T21:27:10.248+0000 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=3455M,session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),statistics_log=(wait=0),verbose=(recovery_progress),
+2024-10-06T21:27:11.402+0000 I STORAGE  [initandlisten] WiredTiger message [1728250031:402946][87:0x7f827131bca8], txn-recover: Main recovery loop: starting at 1/282112 to 2/256
+2024-10-06T21:27:11.838+0000 I STORAGE  [initandlisten] WiredTiger message [1728250031:838362][87:0x7f827131bca8], txn-recover: Recovering log 1 through 2
+2024-10-06T21:27:12.081+0000 I STORAGE  [initandlisten] WiredTiger message [1728250032:81353][87:0x7f827131bca8], txn-recover: Recovering log 2 through 2
+2024-10-06T21:27:12.235+0000 I STORAGE  [initandlisten] WiredTiger message [1728250032:235160][87:0x7f827131bca8], txn-recover: Set global recovery timestamp: 0
+2024-10-06T21:27:12.356+0000 I RECOVERY [initandlisten] WiredTiger recoveryTimestamp. Ts: Timestamp(0, 0)
+2024-10-06T21:27:12.388+0000 I CONTROL  [initandlisten] 
+2024-10-06T21:27:12.388+0000 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2024-10-06T21:27:12.388+0000 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2024-10-06T21:27:12.388+0000 I CONTROL  [initandlisten] ** WARNING: You are running this process as the root user, which is not recommended.
+2024-10-06T21:27:12.388+0000 I CONTROL  [initandlisten] 
+2024-10-06T21:27:12.389+0000 I CONTROL  [initandlisten] 
+2024-10-06T21:27:12.389+0000 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/enabled is 'always'.
+2024-10-06T21:27:12.389+0000 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+2024-10-06T21:27:12.389+0000 I CONTROL  [initandlisten] 
+2024-10-06T21:27:12.465+0000 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/data/db/diagnostic.data'
+2024-10-06T21:27:12.468+0000 I NETWORK  [initandlisten] waiting for connections on port 27017
+2024-10-06T21:27:13.357+0000 I CONTROL  [signalProcessingThread] got signal 15 (Terminated), will terminate after current cmd ends
+2024-10-06T21:27:13.357+0000 I NETWORK  [signalProcessingThread] shutdown: going to close listening sockets...
+2024-10-06T21:27:13.357+0000 I NETWORK  [signalProcessingThread] removing socket file: /tmp/mongodb-27017.sock
+2024-10-06T21:27:13.359+0000 I CONTROL  [signalProcessingThread] Shutting down free monitoring
+2024-10-06T21:27:13.359+0000 I FTDC     [signalProcessingThread] Shutting down full-time diagnostic data capture
+2024-10-06T21:27:13.364+0000 I STORAGE  [signalProcessingThread] WiredTigerKVEngine shutting down
+2024-10-06T21:27:13.393+0000 I STORAGE  [signalProcessingThread] shutdown: removing fs lock...
+2024-10-06T21:27:13.393+0000 I CONTROL  [signalProcessingThread] now exiting
+2024-10-06T21:27:13.393+0000 I CONTROL  [signalProcessingThread] shutting down with code:0

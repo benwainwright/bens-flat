@@ -22,6 +22,7 @@ services:
         BUILD_FROM: ghcr.io/home-assistant/amd64-base:latest
         BUILD_TYPE: local
     volumes:
+      - ./hass-blocks-frontend/logs:/var/log
       - ./hass-blocks-frontend/src:/src
       - ./hass-blocks-frontend/mongo-data:/data
       - ./hass-blocks-frontend/failed-insert:/failed-insert

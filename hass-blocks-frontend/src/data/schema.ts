@@ -85,6 +85,70 @@ export const schema = {
       },
     },
   },
+  events: {
+    bsonType: "object",
+    required: [
+      "id",
+      "executionId",
+      "triggerId",
+      "type",
+      "status",
+      "created",
+      "updated",
+      "instanceOf",
+    ],
+    properties: {
+      id: {
+        bsonType: "string",
+        description: "The unique identifier for the event",
+      },
+      executionId: {
+        bsonType: "string",
+        description: "The unique identifier for the execution",
+      },
+      triggerId: {
+        bsonType: "string",
+        description: "The unique identifier for a given series of executions",
+      },
+      type: {
+        bsonType: "string",
+        description: "The kind of execution",
+      },
+      status: {
+        bsonType: "string",
+        description: "The current status of the trigger",
+      },
+      created: {
+        bsonType: "date",
+        description: "The time that the event was emitted",
+      },
+      output: {
+        bsonType: "object",
+        description: "Block output on successful execution",
+        required: ["continue"],
+        properties: {
+          continue: {
+            bsonType: "bool",
+            description: "Whether execution should continue",
+          },
+          outputType: {
+            bsonType: "string",
+            description:
+              "Whether the block was a standard or conditional block",
+          },
+          conditionResult: {
+            bsonType: "bool",
+            description: "The outcome of the condtion execution",
+          },
+          output: {
+            description: "The output of the block",
+          },
+        },
+      },
+      parent: reference("The parent block that this execution started within"),
+      instanceOf: reference("The block that this execution originates from"),
+    },
+  },
   executions: {
     bsonType: "object",
     required: [

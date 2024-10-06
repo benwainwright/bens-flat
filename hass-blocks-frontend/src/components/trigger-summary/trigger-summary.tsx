@@ -29,8 +29,8 @@ export const TriggerSummary = ({ trigger }: TriggerSummaryProps) => {
     <Accordion>
       <AccordionSummary expandIcon={<ExpandMore />}>
         <Box gap="1rem" display="flex" alignItems="center">
-          <StatusIcon status={runningAutomation?.status ?? ""} />
-          <Box>{trigger.instanceOf.name}</Box>
+          <StatusIcon execution={runningAutomation} />
+          <Box title={trigger.triggerId}>{trigger.instanceOf.name}</Box>
           <Chip label={humanDate.relativeTime(trigger.created)} />
         </Box>
       </AccordionSummary>
@@ -54,7 +54,8 @@ export const TriggerSummary = ({ trigger }: TriggerSummaryProps) => {
         </List>
       </AccordionDetails>
       <AccordionActions>
-        <Button href={`log?triggerId=${trigger.id}`}>Logs</Button>
+        <Button href={`executions?triggerId=${trigger.id}`}>Executions</Button>
+        <Button href={`events?triggerId=${trigger.id}`}>Events</Button>
       </AccordionActions>
     </Accordion>
   );

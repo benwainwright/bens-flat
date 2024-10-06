@@ -6,21 +6,23 @@ export const AutomationSummaries = async () => {
 
   const automations = await api?.blocks.getAll({ type: "automation" });
 
-  const summaries = automations?.map(async (automation) => {
-    const numberOfTriggers = await api?.executions.countAll({
-      type: "trigger",
-      parent: { id: automation.id, collection: "blocks" },
-    });
+  const summaries = await Promise.all(
+    automations?.map(async (automation) => {
+      const numberOfTriggers = await api?.executions.countAll({
+        type: "trigger",
+        parent: { id: automation.id, collection: "blocks" },
+      });
 
-    return (
-      <AutomationSummary
-        id={automation.id}
-        key={`automation-summary-${automation.name}`}
-        name={automation.name}
-        triggerCount={numberOfTriggers}
-      />
-    );
-  });
+      return (
+        <AutomationSummary
+          id={automation.id}
+          key={`automation-summary-${automation.name}`}
+          name={automation.name}
+          triggerCount={numberOfTriggers}
+        />
+      );
+    }),
+  );
 
   return summaries;
 };

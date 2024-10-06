@@ -23,18 +23,6 @@ export const recordEvents = async (socket: Socket, database: DatabaseApi) => {
           ? event.executeId
           : "";
 
-    const previousExecutionRecords = await database.executions.getAll({ id });
-
-    if (
-      previousExecutionRecords.length > 0 &&
-      previousExecutionRecords[0].status !== "started"
-    ) {
-      if (event.type === "assertion") {
-        console.log("DISREGARD cos duplicate");
-      }
-      return;
-    }
-
     const output = {
       outputType: undefined,
       conditionResult: undefined,
@@ -44,8 +32,20 @@ export const recordEvents = async (socket: Socket, database: DatabaseApi) => {
         : { continue: true, outputType: undefined }),
     };
 
-    console.log("output", output);
-    console.log(event);
+    await database.events.update({
+      id: event.id,
+      executionId: id,
+      triggerId: event.triggerId,
+      type: event.type,
+      output,
+      status: event.status,
+      updated: new Date(event.timestamp),
+      instanceOf: { id: event.block.id, collection: "blocks" },
+      parent:
+        "parent" in event
+          ? { id: event.parent?.id ?? "", collection: "blocks" }
+          : undefined,
+    });
 
     await database.executions.update({
       id,
