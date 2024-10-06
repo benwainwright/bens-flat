@@ -34,14 +34,12 @@ const RootLayout = ({
       <CssBaseline />
       <body>
         {process.env.NEXT_PUBLIC_IS_PROD_RUNTIME === "true" && (
-            <AppProvider>
-              <NavBar />
-              <PageContainer>
-                <Paper sx={{ padding: "1rem", width: "100%" }}>
-                  {children}
-                </Paper>
-              </PageContainer>
-            </AppProvider>
+          <AppProvider>
+            <NavBar />
+            <PageContainer>
+              <Paper sx={{ padding: "1rem", width: "100%" }}>{children}</Paper>
+            </PageContainer>
+          </AppProvider>
         )}
       </body>
     </html>

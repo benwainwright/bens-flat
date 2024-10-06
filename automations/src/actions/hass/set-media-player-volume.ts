@@ -1,20 +1,18 @@
-import { Action } from "hass-lego";
+import { ServiceCall } from "hass-lego";
 
 export const mediaPlayerSetVolume = (
   playerId: string | string[],
-  volume: number
+  volume: number,
 ) => {
-  return new Action({
-    name: "Play media player",
-    callback: async (client) => {
-      await client.callService({
-        domain: "media_player",
-        service: "volume_set",
-        target: { entity_id: playerId },
-        data: {
-          volume_level: String(volume),
-        },
-      });
+  return new ServiceCall({
+    name: `Set media player volume to ${volume}`,
+    params: {
+      domain: "media_player",
+      service: "volume_set",
+      target: { entity_id: playerId },
+      service_data: {
+        volume_level: String(volume),
+      },
     },
   });
 };

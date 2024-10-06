@@ -23,16 +23,18 @@ export const parseFindParams = (request: NextRequest) => {
   const triggerId = queryString.get("triggerId");
   const withTriggerId = triggerId ? { triggerId } : {};
 
+  const executionId = queryString.get("executionId");
+  const withExecutionId = executionId ? { executionId } : {};
+
   const status = queryString.get("status");
   const withStatus = status ? { status } : {};
-
-  const parent = queryString.get("parentId");
 
   const blockId = queryString.get("blockId");
   const withBlockId = blockId
     ? { instanceOf: { id: blockId, collection: "blocks" } }
     : {};
 
+  const parent = queryString.get("parentId");
   const withParent = parent
     ? { parent: { id: parent, collection: "blocks" } }
     : {};
@@ -47,6 +49,7 @@ export const parseFindParams = (request: NextRequest) => {
       ...withStatus,
       ...withParent,
       ...withBlockId,
+      ...withExecutionId,
     },
   };
 };

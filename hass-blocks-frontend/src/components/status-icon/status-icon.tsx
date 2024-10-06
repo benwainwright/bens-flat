@@ -2,7 +2,7 @@ import { CircularProgress } from "@mui/material";
 import ErrorIcon from "@mui/icons-material/Error";
 import PanToolIcon from "@mui/icons-material/PanTool";
 import DoDisturbAltIcon from "@mui/icons-material/DoDisturbAlt";
-import PendingIcon from '@mui/icons-material/Pending';
+import PendingIcon from "@mui/icons-material/Pending";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import CheckCircle from "@mui/icons-material/CheckCircle";
@@ -14,9 +14,8 @@ interface StatusIconProps {
 export const StatusIcon = ({ execution, size }: StatusIconProps) => {
   const theSize = size ?? 20;
 
-  const status = execution ? execution.status : "unknown"
-  const output = execution ? execution.output : undefined
-
+  const status = execution ? execution.status : "unknown";
+  const output = execution ? execution.output : undefined;
 
   switch (status) {
     case "failed":
@@ -37,8 +36,7 @@ export const StatusIcon = ({ execution, size }: StatusIconProps) => {
       }
       return <CheckCircle sx={{ color: "green" }} />;
     case "pending":
-
-      return <PendingIcon sx={{ color: "grey"}}/>
+      return <PendingIcon sx={{ color: "grey" }} />;
     default:
       return <QuestionMarkIcon />;
   }

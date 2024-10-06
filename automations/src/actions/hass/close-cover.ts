@@ -1,14 +1,12 @@
-import { Action } from "hass-lego";
+import { Action, ServiceCall } from "hass-lego";
 
 export const closeCover = (coverId: string | string[]) => {
-  return new Action({
+  return new ServiceCall({
     name: "Close cover",
-    callback: async (client) => {
-      await client.callService({
-        domain: "cover",
-        service: "close_cover",
-        target: { entity_id: coverId },
-      });
+    params: {
+      domain: "cover",
+      service: "close_cover",
+      target: { entity_id: coverId },
     },
   });
 };

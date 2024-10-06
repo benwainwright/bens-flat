@@ -13,7 +13,6 @@ export const TriggersSummaries = ({
   automation,
   automationId,
 }: TriggerSummarriesProps) => {
-
   const { triggers } = useTriggers({
     parentId: automationId,
     page: 0,

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { TriggersSummaries } from "../triggers-summaries/triggers-summaries";
 import Box from "@mui/material/Box";
@@ -17,7 +17,6 @@ interface AutomationSummaryProps {
 }
 
 export const AutomationSummary = ({ id, name }: AutomationSummaryProps) => {
-
   const { executions } = useExecutions({
     blockId: id,
     type: "automation",
@@ -28,7 +27,10 @@ export const AutomationSummary = ({ id, name }: AutomationSummaryProps) => {
 
   return (
     <Suspense>
-      <Accordion slotProps={{ heading: { component: "h4" } }} disabled={!execution}>
+      <Accordion
+        slotProps={{ heading: { component: "h4" } }}
+        disabled={!execution}
+      >
         <AccordionSummary expandIcon={<ExpandMore />}>
           <Box alignItems="center" display="flex" gap="1rem" title={id}>
             <StatusIcon execution={execution} />

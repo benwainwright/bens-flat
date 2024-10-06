@@ -1,14 +1,12 @@
-import { Action } from "hass-lego";
+import { Action, ServiceCall } from "hass-lego";
 
 export const turnOnScene = (sceneId: string | string[]) => {
-  return new Action({
+  return new ServiceCall({
     name: "Turn on scene",
-    callback: async (client) => {
-      await client.callService({
-        domain: "scene",
-        service: "turn_on",
-        target: { entity_id: sceneId },
-      });
+    params: {
+      domain: "scene",
+      service: "turn_on",
+      target: { entity_id: sceneId },
     },
   });
 };

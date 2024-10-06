@@ -10,6 +10,7 @@ const fetcher = async (url: string) => {
 export interface FilterParams {
   type?: string;
   id?: string;
+  executionId?: string;
   triggerId?: string;
   status?: string;
   notType?: string;

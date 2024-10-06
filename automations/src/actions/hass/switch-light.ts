@@ -1,4 +1,4 @@
-import { Action, LegoClient } from "hass-lego";
+import { ServiceCall } from "hass-lego";
 
 interface Which {
   entity_id?: string;
@@ -6,17 +6,13 @@ interface Which {
 }
 
 export const switchLight = (target: Which, onOrOff: "on" | "off") => {
-  return new Action({
+  const service = onOrOff === "on" ? "turn_on" : "turn_off";
+  return new ServiceCall({
     name: `Switch light ${onOrOff}`,
-    callback: async (client) => {
-      const action = onOrOff === "on" ? "turn_on" : "turn_off";
-      const params = {
-        domain: "light",
-        service: action,
-        target,
-      };
-
-      const result = await client.callService(params);
+    params: {
+      domain: "light",
+      service,
+      target,
     },
   });
 };
