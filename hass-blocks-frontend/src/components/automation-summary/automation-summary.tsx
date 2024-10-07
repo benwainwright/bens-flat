@@ -9,6 +9,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import { useExecutions } from "@/hooks/use-executions";
 import { StatusIcon } from "../status-icon/status-icon";
+import { CircularProgress } from "@mui/material";
 
 interface AutomationSummaryProps {
   name: string;
@@ -20,13 +21,13 @@ export const AutomationSummary = ({ id, name }: AutomationSummaryProps) => {
   const { executions } = useExecutions({
     blockId: id,
     type: "automation",
+    suspense: true
   });
 
   const execution =
     !executions || executions.length === 0 ? undefined : executions[0];
 
   return (
-    <Suspense>
       <Accordion
         slotProps={{ heading: { component: "h4" } }}
         disabled={!execution}
@@ -41,6 +42,5 @@ export const AutomationSummary = ({ id, name }: AutomationSummaryProps) => {
           <TriggersSummaries automationId={id} automation={name} />
         </AccordionDetails>
       </Accordion>
-    </Suspense>
   );
 };

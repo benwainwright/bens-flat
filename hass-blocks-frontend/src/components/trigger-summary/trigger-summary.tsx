@@ -19,6 +19,7 @@ interface TriggerSummaryProps {
 export const TriggerSummary = ({ trigger }: TriggerSummaryProps) => {
   const { executions } = useExecutions({
     triggerId: trigger.id,
+    suspense: true
   });
 
   const runningAutomation = executions?.find(

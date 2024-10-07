@@ -1,5 +1,6 @@
 import { AutomationSummary } from "../automation-summary/automation-summary";
 import { initialise } from "@/data/initialise";
+import { LoadingContainer } from "../loading-container/loading-container";
 
 export const AutomationSummaries = async () => {
   const api = await initialise();
@@ -14,15 +15,15 @@ export const AutomationSummaries = async () => {
       });
 
       return (
-        <AutomationSummary
-          id={automation.id}
-          key={`automation-summary-${automation.name}`}
-          name={automation.name}
-          triggerCount={numberOfTriggers}
-        />
+          <AutomationSummary
+            id={automation.id}
+            key={`automation-summary-${automation.name}`}
+            name={automation.name}
+            triggerCount={numberOfTriggers}
+          />
       );
     }),
   );
 
-  return summaries;
+  return <LoadingContainer>{summaries}</LoadingContainer>
 };
