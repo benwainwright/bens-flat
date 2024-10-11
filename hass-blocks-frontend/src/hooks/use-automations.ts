@@ -12,6 +12,7 @@ export const useAutomations = (params?: Params) => {
   const { executions: automations, error } = useExecutions({
     ...theParams,
     type: "automation",
+    []
   });
   return { automations, error };
 };

@@ -15,15 +15,15 @@ export const AutomationSummaries = async () => {
       });
 
       return (
-          <AutomationSummary
-            id={automation.id}
-            key={`automation-summary-${automation.name}`}
-            name={automation.name}
-            triggerCount={numberOfTriggers}
-          />
+        <AutomationSummary
+          id={automation.id}
+          key={`automation-summary-${automation.name}`}
+          name={automation.name}
+          triggerCount={numberOfTriggers}
+        />
       );
     }),
   );
 
-  return <LoadingContainer>{summaries}</LoadingContainer>
+  return <LoadingContainer>{summaries}</LoadingContainer>;
 };

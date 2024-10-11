@@ -17,7 +17,7 @@ export const TriggersSummaries = ({
     parentId: automationId,
     page: 0,
     pageSize: 5,
-    suspense: true
+    suspense: true,
   });
 
   return triggers?.map((trigger) => (

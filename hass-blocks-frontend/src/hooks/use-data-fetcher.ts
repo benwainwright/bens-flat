@@ -36,6 +36,7 @@ export const useDataFetcher = <T>(
     keepPreviousData?: boolean;
     suspense?: boolean;
   },
+  fallback?: T,
 ): { data: T | undefined; error: Error | undefined } => {
   const { suspense, keepPreviousData, ...queryStringParams } = params ?? {};
 
@@ -49,6 +50,7 @@ export const useDataFetcher = <T>(
     refreshInterval: 250,
     keepPreviousData,
     suspense,
+    fallbackData: fallback,
   });
   return { data, error };
 };

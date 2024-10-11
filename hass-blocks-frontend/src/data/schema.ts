@@ -75,6 +75,10 @@ export const schema = {
         bsonType: "string",
         description: "The type of block",
       },
+      params: {
+        bsonType: "string",
+        description: "params for service calls",
+      },
       created: {
         bsonType: "date",
         description: "The time that the block was created",

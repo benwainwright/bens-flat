@@ -21,26 +21,26 @@ export const AutomationSummary = ({ id, name }: AutomationSummaryProps) => {
   const { executions } = useExecutions({
     blockId: id,
     type: "automation",
-    suspense: true
+    suspense: true,
   });
 
   const execution =
     !executions || executions.length === 0 ? undefined : executions[0];
 
   return (
-      <Accordion
-        slotProps={{ heading: { component: "h4" } }}
-        disabled={!execution}
-      >
-        <AccordionSummary expandIcon={<ExpandMore />}>
-          <Box alignItems="center" display="flex" gap="1rem" title={id}>
-            <StatusIcon execution={execution} />
-            {name}
-          </Box>
-        </AccordionSummary>
-        <AccordionDetails>
-          <TriggersSummaries automationId={id} automation={name} />
-        </AccordionDetails>
-      </Accordion>
+    <Accordion
+      slotProps={{ heading: { component: "h4" } }}
+      disabled={!execution}
+    >
+      <AccordionSummary expandIcon={<ExpandMore />}>
+        <Box alignItems="center" display="flex" gap="1rem" title={id}>
+          <StatusIcon execution={execution} />
+          {name}
+        </Box>
+      </AccordionSummary>
+      <AccordionDetails>
+        <TriggersSummaries automationId={id} automation={name} />
+      </AccordionDetails>
+    </Accordion>
   );
 };

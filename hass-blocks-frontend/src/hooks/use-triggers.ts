@@ -37,6 +37,10 @@ export type Execution = SchemaTypes<typeof schema>["executions"] & {
 export const useTriggers = (
   params?: (FilterParamsWithPagination | FilterParams) & { suspense?: boolean },
 ) => {
-  const { data, error } = useDataFetcher<Execution[]>("api/triggers", params);
+  const { data, error } = useDataFetcher<Execution[]>(
+    "api/triggers",
+    params,
+    [],
+  );
   return { triggers: data, error };
 };

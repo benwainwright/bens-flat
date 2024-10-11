@@ -20,7 +20,7 @@ export const ExecutionLog = <T,>({
     ...execution,
     name: execution.instanceOf.name,
     continue: execution.output?.continue ?? "",
-    output: execution.output?.output,
+    output: JSON.stringify(execution.output?.output, null, 2),
     result: execution.output?.conditionResult,
     outputType: execution.output?.outputType,
     created: humanDate.relativeTime(execution.created),

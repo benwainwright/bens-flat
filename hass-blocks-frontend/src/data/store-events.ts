@@ -13,6 +13,11 @@ export const recordEvents = async (socket: Socket, database: DatabaseApi) => {
       name: event.name,
       type: event.type,
       status: event.status,
+      params: JSON.stringify(
+        "params" in event.block && event.block.params,
+        null,
+        2,
+      ),
       updated: new Date(),
     });
 

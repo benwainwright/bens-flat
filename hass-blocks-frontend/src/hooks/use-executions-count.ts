@@ -17,6 +17,7 @@ export const useExecutionsCount = (
   const { data, error } = useDataFetcher<{ count: number }>(
     "api/executions/count",
     params,
+    { count: 0 },
   );
   return { count: data?.count, error };
 };
