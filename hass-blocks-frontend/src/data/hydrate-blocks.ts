@@ -1,4 +1,5 @@
 import { DatabaseApi } from "./create-api";
+import { SerialisedBlock } from "@/hooks/use-data-fetcher";
 
 interface InstanceOfBlock {
   instanceOf: {
@@ -12,10 +13,16 @@ interface WithParent {
   };
 }
 
-export const hydrateBlocks = async (
-  executions: (InstanceOfBlock & WithParent)[],
-  database: DatabaseApi,
-) => {
+type Hydrated<T extends InstanceOfBlock & WithParent> = T & {
+  instanceOf: SerialisedBlock,
+  parent: SerialisedBlock
+}
+
+export const hydrateBlocks = async <T extends InstanceOfBlock & WithParent>
+  (
+    executions: T[],
+    database: DatabaseApi,
+  ): Promise<Hydrated<T>[]> => {
   const blocks = Array.from(
     new Set([
       ...executions.map((executions) => executions.instanceOf.id),
@@ -35,5 +42,5 @@ export const hydrateBlocks = async (
       (block) => block.id === execution.instanceOf.id,
     ),
     parent: blocksData.find((block) => block.id === execution.parent?.id),
-  }));
+  })) as Hydrated<T>[];
 };

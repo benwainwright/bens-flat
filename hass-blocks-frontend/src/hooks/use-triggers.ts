@@ -1,11 +1,5 @@
 import { schema, SchemaTypes } from "@/data/schema";
-import useSWR from "swr";
 import { useDataFetcher } from "./use-data-fetcher";
-
-const fetcher = async (url: string) => {
-  const response = await fetch(url);
-  return await response.json();
-};
 
 export interface FilterParams {
   type?: string;
@@ -35,12 +29,11 @@ export type Execution = SchemaTypes<typeof schema>["executions"] & {
 };
 
 export const useTriggers = (
-  params?: (FilterParamsWithPagination | FilterParams) & { suspense?: boolean },
+  params?: (FilterParamsWithPagination | FilterParams) & { suspense?: boolean }
 ) => {
   const { data, error } = useDataFetcher<Execution[]>(
-    "api/triggers",
+    "/api/triggers",
     params,
-    [],
   );
   return { triggers: data, error };
 };

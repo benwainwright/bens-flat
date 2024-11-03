@@ -1,10 +1,9 @@
 import { schema, SchemaTypes } from "@/data/schema";
 import {
-  FilterParams,
-  FilterParamsWithPagination,
-  SerialisedBlock,
   useDataFetcher,
-} from "./use-data-fetcher";
+} from "./use-data-fetcher/index";
+import { SerialisedBlock } from "./use-data-fetcher/serialised-block";
+import { FilterParams, FilterParamsWithPagination } from "./use-triggers";
 
 export type Execution = SchemaTypes<typeof schema>["executions"] & {
   parent?: SerialisedBlock;
@@ -12,10 +11,10 @@ export type Execution = SchemaTypes<typeof schema>["executions"] & {
 };
 
 export const useExecutions = (
-  params?: (FilterParamsWithPagination | FilterParams) & { suspense?: boolean },
+  params?: (FilterParamsWithPagination | FilterParams) & { suspense?: boolean }
 ) => {
   const { data: executions, error } = useDataFetcher<Execution[]>(
-    "api/executions",
+    "/api/executions",
     params,
   );
   return { executions, error };

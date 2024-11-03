@@ -3,6 +3,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { PageContainer } from "@toolpad/core/PageContainer";
 import { AppProvider } from "@toolpad/core/nextjs";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+
 import "./globals.css";
 import { NavBar } from "@/components/nav-bar/nav-bar";
 
@@ -23,6 +25,9 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import Paper from "@mui/material/Paper";
+import QueryProvider from "@/components/query-provider/query-provider";
+
+const queryClient = new QueryClient()
 
 const RootLayout = ({
   children,
@@ -35,10 +40,12 @@ const RootLayout = ({
       <body>
         {process.env.NEXT_PUBLIC_IS_PROD_RUNTIME === "true" && (
           <AppProvider>
-            <NavBar />
-            <PageContainer>
-              <Paper sx={{ padding: "1rem", width: "100%" }}>{children}</Paper>
-            </PageContainer>
+            <QueryProvider>
+              <NavBar />
+              <PageContainer>
+                <Paper sx={{ padding: "1rem", width: "100%" }}>{children}</Paper>
+              </PageContainer>
+            </QueryProvider>
           </AppProvider>
         )}
       </body>

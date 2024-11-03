@@ -4,7 +4,7 @@ import {
   FilterParamsWithPagination,
   SerialisedBlock,
   useDataFetcher,
-} from "./use-data-fetcher";
+} from "./use-data-fetcher/index";
 
 export type Event = SchemaTypes<typeof schema>["events"] & {
   parent?: SerialisedBlock;
@@ -12,12 +12,11 @@ export type Event = SchemaTypes<typeof schema>["events"] & {
 };
 
 export const useEvents = (
-  params?: (FilterParamsWithPagination | FilterParams) & { suspense: boolean },
+  params?: (FilterParamsWithPagination | FilterParams) & { suspense?: boolean },
 ) => {
   const { data: events, error } = useDataFetcher<Event[]>(
-    "api/events",
+    "/api/events",
     params,
-    [],
   );
   return { events, error };
 };

@@ -3,7 +3,7 @@ import {
   FilterParams,
   FilterParamsWithPagination,
   useDataFetcher,
-} from "./use-data-fetcher";
+} from "./use-data-fetcher/index";
 
 export type Block = SchemaTypes<typeof schema>["blocks"];
 
@@ -11,9 +11,8 @@ export const useBlocks = (
   params?: (FilterParamsWithPagination | FilterParams) & { suspense?: boolean },
 ) => {
   const { data: blocks, error } = useDataFetcher<Block[]>(
-    "api/blocks",
-    params,
-    [],
+    "/api/blocks",
+    params
   );
   return { blocks, error };
 };

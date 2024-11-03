@@ -14,7 +14,6 @@ import humanDate from "human-date";
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
 import { Suspense } from "react";
-import Paper from "@mui/material/Paper";
 import { CircularProgress } from "@mui/material";
 import { CodeBlock } from "../code-block/code-block";
 
@@ -46,70 +45,62 @@ export const ExecutionInfoDialog = ({
             <Box display="flex" gap="1rem" flexDirection="row">
               <Container>
                 <Typography variant="h6">Events</Typography>
-                <Paper>
-                  <Box padding="1rem" margin="1rem">
-                  <TableContainer>
-                    <Table>
-                      <TableHead>
-                        <TableRow>
-                          <TableCell>When</TableCell>
-                          <TableCell>Status</TableCell>
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
-                        {events
-                          ?.slice()
-                          .sort((a, b) => (a.created > b.created ? 1 : -1))
-                          .map((event) => {
-                            return (
-                              <TableRow>
-                                <TableCell sx={{ whiteSpace: "nowrap" }}>
-                                  {humanDate.relativeTime(event.created)}
-                                </TableCell>
-                                <TableCell>{event.status}</TableCell>
-                              </TableRow>
-                            );
-                          })}
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
-                </Box>
-                </Paper>
+                <TableContainer>
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>When</TableCell>
+                        <TableCell>Status</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {events
+                        ?.slice()
+                        .sort((a, b) => (a.created > b.created ? 1 : -1))
+                        .map((event) => {
+                          return (
+                            <TableRow>
+                              <TableCell sx={{ whiteSpace: "nowrap" }}>
+                                {humanDate.relativeTime(event.created)}
+                              </TableCell>
+                              <TableCell>{event.status}</TableCell>
+                            </TableRow>
+                          );
+                        })}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
               </Container>
               {finished && (
                 <Container>
                   <Typography variant="h6">Result</Typography>
-                  <Paper>
-                    <Box padding="0.1rem 1rem" margin="1rem">
-                    <TableContainer>
-                      <Table>
-                        <TableBody>
+                  <TableContainer>
+                    <Table>
+                      <TableBody>
+                        <TableRow>
+                          <TableCell>Continue</TableCell>
+                          <TableCell>
+                            {String(finished?.output?.continue)}
+                          </TableCell>
+                        </TableRow>
+                        {finished?.output?.outputType === "conditional" && (
                           <TableRow>
-                            <TableCell>Continue</TableCell>
-                            <TableCell>
-                              {String(finished?.output?.continue)}
+                            <TableCell
+                              sx={{
+                                whiteSpace: "nowrap",
+                                borderBottom: "none",
+                              }}
+                            >
+                              Condition Result
+                            </TableCell>
+                            <TableCell sx={{ borderBottom: "none" }}>
+                              {String(finished?.output?.conditionResult)}
                             </TableCell>
                           </TableRow>
-                          {finished?.output?.outputType === "conditional" && (
-                            <TableRow>
-                              <TableCell
-                                sx={{
-                                  whiteSpace: "nowrap",
-                                  borderBottom: "none",
-                                }}
-                              >
-                                Condition Result
-                              </TableCell>
-                              <TableCell sx={{ borderBottom: "none" }}>
-                                {String(finished?.output?.conditionResult)}
-                              </TableCell>
-                            </TableRow>
-                          )}
-                        </TableBody>
-                      </Table>
-                    </TableContainer>
-                    </Box>
-                  </Paper>
+                        )}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
                 </Container>
               )}
             </Box>

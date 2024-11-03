@@ -3,17 +3,14 @@
 import { TriggersSummaries } from "../triggers-summaries/triggers-summaries";
 import Box from "@mui/material/Box";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import { Suspense, useState } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import { useExecutions } from "@/hooks/use-executions";
 import { StatusIcon } from "../status-icon/status-icon";
-import { CircularProgress } from "@mui/material";
 
 interface AutomationSummaryProps {
   name: string;
-  triggerCount: number;
   id: string;
 }
 
@@ -21,7 +18,6 @@ export const AutomationSummary = ({ id, name }: AutomationSummaryProps) => {
   const { executions } = useExecutions({
     blockId: id,
     type: "automation",
-    suspense: true,
   });
 
   const execution =
@@ -29,8 +25,11 @@ export const AutomationSummary = ({ id, name }: AutomationSummaryProps) => {
 
   return (
     <Accordion
-      slotProps={{ heading: { component: "h4" } }}
       disabled={!execution}
+      slotProps={{
+        heading: { component: "h4" },
+        transition: { unmountOnExit: true },
+      }}
     >
       <AccordionSummary expandIcon={<ExpandMore />}>
         <Box alignItems="center" display="flex" gap="1rem" title={id}>
@@ -41,6 +40,6 @@ export const AutomationSummary = ({ id, name }: AutomationSummaryProps) => {
       <AccordionDetails>
         <TriggersSummaries automationId={id} automation={name} />
       </AccordionDetails>
-    </Accordion>
+    </Accordion >
   );
 };

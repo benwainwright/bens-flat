@@ -1,29 +1,20 @@
+"use client"
+
+import { useAutomations } from "@/hooks/use-automations";
 import { AutomationSummary } from "../automation-summary/automation-summary";
-import { initialise } from "@/data/initialise";
 import { LoadingContainer } from "../loading-container/loading-container";
 
-export const AutomationSummaries = async () => {
-  const api = await initialise();
+export const AutomationSummaries = () => {
 
-  const automations = await api?.blocks.getAll({ type: "automation" });
+  const { automations } = useAutomations({ refetchInterval: 10_000 })
 
-  const summaries = await Promise.all(
-    automations?.map(async (automation) => {
-      const numberOfTriggers = await api?.executions.countAll({
-        type: "trigger",
-        parent: { id: automation.id, collection: "blocks" },
-      });
+  const summaries = automations?.map(automation => (
+    <AutomationSummary
+      id={automation.id}
+      key={`automation-summary-${automation.name}`}
+      name={automation.name}
+    />
+  ))
 
-      return (
-        <AutomationSummary
-          id={automation.id}
-          key={`automation-summary-${automation.name}`}
-          name={automation.name}
-          triggerCount={numberOfTriggers}
-        />
-      );
-    }),
-  );
-
-  return <LoadingContainer>{summaries}</LoadingContainer>;
+  return <LoadingContainer>{summaries}</LoadingContainer>
 };

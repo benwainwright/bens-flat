@@ -1,4 +1,4 @@
-import { useExecutions } from "./use-executions";
+import { useBlocks } from "./use-blocks";
 
 interface Params {
   page?: number;
@@ -6,13 +6,12 @@ interface Params {
   blockId?: string;
 }
 
-export const useAutomations = (params?: Params) => {
+export const useAutomations = (params?: Params & { suspense?: boolean } & { refetchInterval?: number }) => {
   const theParams = params ? params : {};
 
-  const { executions: automations, error } = useExecutions({
+  const { blocks: automations, error } = useBlocks({
     ...theParams,
-    type: "automation",
-    []
+    type: "automation"
   });
   return { automations, error };
 };

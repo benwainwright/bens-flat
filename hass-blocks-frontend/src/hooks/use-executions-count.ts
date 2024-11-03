@@ -2,7 +2,7 @@ import {
   FilterParams,
   FilterParamsWithPagination,
   useDataFetcher,
-} from "./use-data-fetcher";
+} from "./use-data-fetcher/index";
 
 const fetcher = async (url: string) => {
   const response = await fetch(url);
@@ -10,14 +10,11 @@ const fetcher = async (url: string) => {
 };
 
 export const useExecutionsCount = (
-  params?: (FilterParamsWithPagination | FilterParams) & {
-    keepPreviousData?: boolean;
-  },
+  params?: (FilterParamsWithPagination | FilterParams)
 ) => {
   const { data, error } = useDataFetcher<{ count: number }>(
-    "api/executions/count",
+    "/api/executions/count",
     params,
-    { count: 0 },
   );
   return { count: data?.count, error };
 };
