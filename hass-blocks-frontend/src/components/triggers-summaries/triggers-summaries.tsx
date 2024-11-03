@@ -3,8 +3,7 @@
 import { Suspense } from "react";
 import { TriggerSummary } from "../trigger-summary/trigger-summary";
 import { useTriggers } from "@/hooks/use-triggers";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
+import { Box, CircularProgress } from "@mui/material";
 
 interface TriggerSummarriesProps {
   automation: string;
@@ -22,11 +21,13 @@ export const TriggersSummaries = ({
     suspense: false
   });
 
-  return triggers?.map((trigger) => (
+  const summaries = triggers?.map((trigger) => (
     <TriggerSummary
       automation={automation}
       trigger={trigger}
       key={`trigger-summary-${trigger.id}`}
     />
   ));
+
+  return <Suspense fallback={<Box sx={{ padding: "1rem" }}><CircularProgress size={20} /></Box>}>{summaries}</Suspense>
 };
